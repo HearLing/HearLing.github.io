@@ -1,6 +1,6 @@
 module.exports = {
-  "title": "recodemo",
-  "description": "test",
+  "title": "HearLingの博客",
+  "description": "不爱巧克力爱Chocolate",
   "dest": "public",
   "locales": {
     "/": {

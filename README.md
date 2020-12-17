@@ -16,7 +16,7 @@ tagline: 我们的征途是星辰大海！
 # }
 isShowTitleInHome: false
 actionText: Guide
-actionLink: /views/other/guide
+actionLink: /
 features:
 - title: Yesterday
   details: 开发一款看着开心、写着顺手的 vuepress 博客主题
