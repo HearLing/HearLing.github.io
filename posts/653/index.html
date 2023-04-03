@@ -1,0 +1,495 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>「JS刷题之路-栈」和我一起系统的刷题吧（内附思维导图） | HearLingの博客</title><meta name="keywords" content="JS，刷题"><meta name="author" content="HearLing"><meta name="copyright" content="HearLing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JS刷题之路-栈⭐️最近一直在刷题，所以鸽了，这不我快马加鞭赶出了栈相关的JS题；题不在多，掌握了思维就会发现万变不离其宗（其实我觉着和刷数学题是差不多的感觉哈哈）   来，第一题搞个开胃小菜，往后逐渐加大力度 LeetCode-栈一、20.有效的括号  题目链接：20.有效的括号  题目描述给定一个只包括’(‘，’)’，’{‘，’}’，’[‘，’]’的字符串，判断字符串是否有效。 有效字符串需满">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「JS刷题之路-栈」和我一起系统的刷题吧（内附思维导图）">
+<meta property="og:url" content="https://yangchaoyi.vip/posts/653/index.html">
+<meta property="og:site_name" content="HearLingの博客">
+<meta property="og:description" content="JS刷题之路-栈⭐️最近一直在刷题，所以鸽了，这不我快马加鞭赶出了栈相关的JS题；题不在多，掌握了思维就会发现万变不离其宗（其实我觉着和刷数学题是差不多的感觉哈哈）   来，第一题搞个开胃小菜，往后逐渐加大力度 LeetCode-栈一、20.有效的括号  题目链接：20.有效的括号  题目描述给定一个只包括’(‘，’)’，’{‘，’}’，’[‘，’]’的字符串，判断字符串是否有效。 有效字符串需满">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b495c56022f1428c9d5f829643b15d97~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp">
+<meta property="article:published_time" content="2020-12-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-01T08:50:27.000Z">
+<meta property="article:author" content="HearLing">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="刷题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b495c56022f1428c9d5f829643b15d97~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://yangchaoyi.vip/posts/653/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-01 16:50:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kang-static@latest/Hexo/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Rr210/Lantern@2.4/dl.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/img/202110311156644.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">HearLingの博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">「JS刷题之路-栈」和我一起系统的刷题吧（内附思维导图）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-14T16:00:00.000Z" title="发表于 2020-12-15 00:00:00">2020-12-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-01T08:50:27.000Z" title="更新于 2022-03-01 16:50:27">2022-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JS/">JS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JS/%E5%88%B7%E9%A2%98/">刷题</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="JS刷题之路-栈"><a href="#JS刷题之路-栈" class="headerlink" title="JS刷题之路-栈"></a>JS刷题之路-栈</h1><p><font color=#999AAA >⭐️最近一直在刷题，所以鸽了，这不我快马加鞭赶出了栈相关的JS题；题不在多，掌握了思维就会发现万变不离其宗（其实我觉着和刷数学题是差不多的感觉哈哈）</p>
+<hr style=" border:solid; width:100%; height:1px;" color=#000000 size=1">
+
+<h1 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h1><p><img src= "/img/loading.gif" data-lazy-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f7bc2287be1f41969edd4914a206a376~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<blockquote>
+<p> 获取高清PDF，请在微信公众号【小狮子前端】回复【LeetCode】，一起刷题或者交流学习可以加Q群【666151691】</p>
+<p><font color=#999AAA>上述刷题路径呢是前辈【一百个Chocolate】总结的，我个人觉得按照这样在LeetCode上刷题挺好的；在这一篇呢只讲栈，后续持续加更，等我刷完差不多就总结完了~<br></font></p>
+</blockquote>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<p><font color=#999AAA >来，第一题搞个开胃小菜，往后逐渐加大力度</p>
+<h1 id="LeetCode-栈"><a href="#LeetCode-栈" class="headerlink" title="LeetCode-栈"></a>LeetCode-栈</h1><h2 id="一、20-有效的括号"><a href="#一、20-有效的括号" class="headerlink" title="一、20.有效的括号"></a>一、20.有效的括号</h2><ul>
+<li><input disabled="" type="checkbox"> 题目链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-parentheses/">20.有效的括号</a></li>
+</ul>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个只包括’(‘，’)’，’{‘，’}’，’[‘，’]’的字符串，判断字符串是否有效。</p>
+<p>有效字符串需满足：</p>
+<p>左括号必须用相同类型的右括号闭合。 左括号必须以正确的顺序闭合。 注意空字符串可被认为是有效字符串。</p>
+<p>示例 1:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: &quot;()&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+
+<p>示例 2:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: &quot;()[]&#123;&#125;&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+
+<p>示例 3:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: &quot;(]&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+
+<p>示例 4:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: &quot;([)]&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+
+<p>示例 5:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: &quot;&#123;[]&#125;&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>处在后面的左括号要最先匹配到对应的右括号，用栈的后进先出的思想，后进匹配弹出，接着匹配下一左括号；</p>
+<p><font color=#999AAA >代码如下（示例）：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">s</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">boolean</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isValid = <span class="keyword">function</span> (<span class="params">s</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s.<span class="property">length</span> &amp; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//奇数肯定是false，直接返回节省时间</span></span><br><span class="line">    <span class="keyword">let</span> stack = [];</span><br><span class="line">    <span class="keyword">let</span> obj = &#123; <span class="comment">//存一个键值对，同理也可以用map存，也可以不存，不存的话就会多几个if匹配语句</span></span><br><span class="line">        <span class="string">&quot;)&quot;</span>: <span class="string">&quot;(&quot;</span>,</span><br><span class="line">        <span class="string">&quot;]&quot;</span>: <span class="string">&quot;[&quot;</span>,</span><br><span class="line">        <span class="string">&quot;&#125;&quot;</span>: <span class="string">&quot;&#123;&quot;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] === <span class="string">&quot;(&quot;</span> || s[i] === <span class="string">&#x27;[&#x27;</span> || s[i] === <span class="string">&quot;&#123;&quot;</span>) &#123; <span class="comment">//匹配左括号</span></span><br><span class="line">            stack.<span class="title function_">push</span>(s[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stack[stack.<span class="property">length</span> - <span class="number">1</span>] === obj[s[i]]) &#123; <span class="comment">//匹配右括号</span></span><br><span class="line">            stack.<span class="title function_">pop</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !stack.<span class="property">length</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><font color=#999AAA >不存的话会快一点，代码也更清晰明了，但如果括号类型多了的话代码就会有点冗余了</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">s</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">boolean</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isValid = <span class="keyword">function</span> (<span class="params">s</span>) &#123;</span><br><span class="line">    <span class="comment">// 如果是奇数，不可能匹配成功，直接返回false</span></span><br><span class="line">    <span class="keyword">if</span> (s.<span class="property">length</span> &amp; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">let</span> stack = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] === <span class="string">&#x27;(&#x27;</span> || s[i] === <span class="string">&#x27;&#123;&#x27;</span> || s[i] === <span class="string">&#x27;[&#x27;</span>) stack.<span class="title function_">push</span>(s[i])</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (s[i] === <span class="string">&#x27;)&#x27;</span> &amp;&amp; stack[stack.<span class="property">length</span> - <span class="number">1</span>] === <span class="string">&#x27;(&#x27;</span>) stack.<span class="title function_">pop</span>()</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (s[i] === <span class="string">&#x27;&#125;&#x27;</span> &amp;&amp; stack[stack.<span class="property">length</span> - <span class="number">1</span>] === <span class="string">&#x27;&#123;&#x27;</span>) stack.<span class="title function_">pop</span>()</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (s[i] === <span class="string">&#x27;]&#x27;</span> &amp;&amp; stack[stack.<span class="property">length</span> - <span class="number">1</span>] === <span class="string">&#x27;[&#x27;</span>) stack.<span class="title function_">pop</span>()</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !stack.<span class="property">length</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="二、946-验证栈序列"><a href="#二、946-验证栈序列" class="headerlink" title="二、946. 验证栈序列"></a>二、946. 验证栈序列</h2><ul>
+<li><input disabled="" type="checkbox"> 题目链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/validate-stack-sequences/">946. 验证栈序列</a><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3>给定 pushed 和 popped 两个序列，每个序列中的 值都不重复，只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，返回 true；否则，返回 false 。</li>
+</ul>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：pushed = [1,2,3,4,5], popped = [4,5,3,2,1]</span><br><span class="line">输出：true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">解释：我们可以按以下顺序执行：</span><br><span class="line">push(1), push(2), push(3), push(4), pop() -&gt; 4,</span><br><span class="line">push(5), pop() -&gt; 5, pop() -&gt; 3, pop() -&gt; 2, pop() -&gt; 1</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：pushed = [1,2,3,4,5], popped = [4,3,5,1,2]</span><br><span class="line">输出：false</span><br><span class="line">解释：1 不能在 2 之前弹出。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0 &lt;= pushed.length == popped.length &lt;= 1000</span><br><span class="line">0 &lt;= pushed[i], popped[i] &lt; 1000</span><br><span class="line">pushed 是 popped 的排列。</span><br></pre></td></tr></table></figure>
+
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>借助一个新栈来存放从pushed加入栈的元素，然后每次和popped的元素进行比对，如果匹配成功出栈，如果这个新栈为空，那么代表这个栈入栈和出栈序列是合理的，返回 true，否则返回false；</p>
+<p><font color=#999AAA >这题比上一题难一丢丢，但还是挺简单的吧，我就不画栈图了，简单的示意，聪明的你肯定能明白的~</p>
+<p><font color=#999AAA >代码如下（示例）：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**题解：</span></span><br><span class="line"><span class="comment"> * stack      popped</span></span><br><span class="line"><span class="comment"> * 1          4</span></span><br><span class="line"><span class="comment"> * 12         4 </span></span><br><span class="line"><span class="comment"> * 123        4</span></span><br><span class="line"><span class="comment"> * 1234       4   相等弹出 popped下标++    </span></span><br><span class="line"><span class="comment"> *   123      5</span></span><br><span class="line"><span class="comment"> * 1235       5   相等弹出 popped下标++</span></span><br><span class="line"><span class="comment"> *   123      3</span></span><br><span class="line"><span class="comment"> *   12       2</span></span><br><span class="line"><span class="comment"> *   1        1</span></span><br><span class="line"><span class="comment"> * 栈空</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">pushed</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">popped</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">boolean</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> validateStackSequences = <span class="keyword">function</span> (<span class="params">pushed, popped</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> stack = [];</span><br><span class="line">    <span class="keyword">var</span> j=<span class="number">0</span>;<span class="comment">//索引</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> cur <span class="keyword">of</span> pushed) &#123;</span><br><span class="line">        stack.<span class="title function_">push</span>(cur); <span class="comment">//存</span></span><br><span class="line">        <span class="keyword">while</span> (stack[stack.<span class="property">length</span> - <span class="number">1</span>] === popped[j] &amp;&amp; stack.<span class="property">length</span> &gt; <span class="number">0</span>) &#123; <span class="comment">//匹配弹出</span></span><br><span class="line">            stack.<span class="title function_">pop</span>();</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !stack.<span class="property">length</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="三、921-使括号有效的最少添加"><a href="#三、921-使括号有效的最少添加" class="headerlink" title="三、921.使括号有效的最少添加"></a>三、921.使括号有效的最少添加</h2><ul>
+<li><input disabled="" type="checkbox"> 题目链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-add-to-make-parentheses-valid/">921.使括号有效的最少添加</a><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3>给定一个由 ‘(‘ 和 ‘)’ 括号组成的字符串 S，我们需要添加最少的括号（ ‘(‘ 或是 ‘)’，可以在任何位置），以使得到的括号字符串有效。</li>
+</ul>
+<p>从形式上讲，只有满足下面几点之一，括号字符串才是有效的：</p>
+<p>它是一个空字符串，或者<br>它可以被写成 AB （A 与 B 连接）, 其中 A 和 B 都是有效字符串，或者<br>它可以被写作 (A)，其中 A 是有效字符串。<br>给定一个括号字符串，返回为使结果字符串有效而必须添加的最少括号数。</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：&quot;())&quot;</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：&quot;(((&quot;</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+
+<p>示例 3：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：&quot;()&quot;</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
+
+<p>示例 4：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：&quot;()))((&quot;</span><br><span class="line">输出：4</span><br></pre></td></tr></table></figure>
+
+
+
+<p>提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">S.length &lt;= 1000</span><br><span class="line">S 只包含 &#x27;(&#x27; 和 &#x27;)&#x27; 字符。</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>分析示例4 ：    输入：<code>&quot;()))((&quot;</code>    输出：4<br>第一个左括号匹配到第一个右括号</p>
+<p>接下来的两个没办法匹配到左括号（栈为空）于是加入栈中（虽然说它也没机会被匹配到了）</p>
+<p>接下来遇到两个左括号同样的道理加入栈中。</p>
+<p>可以用很多方法来存括号，但是用栈做更方便，这里用栈来做，匹配弹出，剩下不匹配的长度就是我们要加的括号</p>
+<p><font color=#999AAA >代码如下（示例）：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">S</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> minAddToMakeValid = <span class="keyword">function</span> (<span class="params">S</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> stack = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> cur <span class="keyword">of</span> S)&#123;</span><br><span class="line">        <span class="keyword">if</span>(cur === <span class="string">&#x27;)&#x27;</span> &amp;&amp; stack[stack.<span class="property">length</span>-<span class="number">1</span>] === <span class="string">&#x27;(&#x27;</span>)&#123;<span class="comment">//当前值为右括号且栈顶为左括号则弹出</span></span><br><span class="line">            stack.<span class="title function_">pop</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            stack.<span class="title function_">push</span>(cur);<span class="comment">//否则加入</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> stack.<span class="property">length</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="前置知识（四五题的）"><a href="#前置知识（四五题的）" class="headerlink" title="前置知识（四五题的）"></a>前置知识（四五题的）</h2><h3 id="首先什么是单调栈"><a href="#首先什么是单调栈" class="headerlink" title="首先什么是单调栈"></a>首先什么是单调栈</h3><p>顾名思义单调栈就是维护一个单调递减或递增的栈；</p>
+<blockquote>
+<p>单调递增栈：单调递增栈就是从栈底到栈顶数据是从大到小<br>单调递减栈：单调递减栈就是从栈底到栈顶数据是从小到大</p>
+</blockquote>
+<p>如果记不住，或者容易搞混，<code>栈底大就是递增，栈底小就是递减</code>会好记一些</p>
+<h3 id="如何使用单调栈"><a href="#如何使用单调栈" class="headerlink" title="如何使用单调栈"></a>如何使用单调栈</h3><p>举例单调递增栈：<br>例如，栈中自顶向下的元素为  10,20,30,40,50  ，插入元素 25 时为了保证单调性需要依次弹出元素  ，操作后栈变为  25,30,40,50  。</p>
+<p>伪代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">insert x</span><br><span class="line">while !sta.empty() &amp;&amp; sta.top()&lt;x</span><br><span class="line">    sta.pop()</span><br><span class="line">sta.push(x)</span><br></pre></td></tr></table></figure>
+
+<h3 id="什么题适合用单调栈来做呢？"><a href="#什么题适合用单调栈来做呢？" class="headerlink" title="什么题适合用单调栈来做呢？"></a>什么题适合用单调栈来做呢？</h3><p>总结可能不会太全面，清谅解：</p>
+<ol>
+<li>求最长的单调上升、递减区间</li>
+<li>针对每个数，寻找它和它左 / 右边第一个比它大 / 小的数的值，以及相距多少个数。</li>
+<li>左右配对</li>
+<li>多个区间中的最值 / 某个数为最值的最长区间<hr>
+有了这些前置知识我们再来看看这道题
+
+</li>
+</ol>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="四、901-股票价格跨度"><a href="#四、901-股票价格跨度" class="headerlink" title="四、901. 股票价格跨度"></a>四、901. 股票价格跨度</h2><ul>
+<li><input disabled="" type="checkbox"> 题目链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/online-stock-span/">901. 股票价格跨度</a><h3 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h3>编写一个 StockSpanner 类，它收集某些股票的每日报价，并返回该股票当日价格的跨度。</li>
+</ul>
+<p>今天股票价格的跨度被定义为股票价格小于或等于今天价格的最大连续日数（从今天开始往回数，包括今天）。</p>
+<p>例如，如果未来7天股票的价格是 [100, 80, 60, 70, 60, 75, 85]，那么股票跨度将是 [1, 1, 1, 2, 1, 4, 6]。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[&quot;StockSpanner&quot;,&quot;next&quot;,&quot;next&quot;,&quot;next&quot;,&quot;next&quot;,&quot;next&quot;,&quot;next&quot;,&quot;next&quot;], [[],[100],[80],[60],[70],[60],[75],[85]]</span><br><span class="line">输出：[null,1,1,1,2,1,4,6]</span><br><span class="line">解释：</span><br><span class="line">首先，初始化 S = StockSpanner()，然后：</span><br><span class="line">S.next(100) 被调用并返回 1，</span><br><span class="line">S.next(80) 被调用并返回 1，</span><br><span class="line">S.next(60) 被调用并返回 1，</span><br><span class="line">S.next(70) 被调用并返回 2，</span><br><span class="line">S.next(60) 被调用并返回 1，</span><br><span class="line">S.next(75) 被调用并返回 4，</span><br><span class="line">S.next(85) 被调用并返回 6。</span><br><span class="line"></span><br><span class="line">注意 (例如) S.next(75) 返回 4，因为截至今天的最后 4 个价格</span><br><span class="line">(包括今天的价格 75) 小于或等于今天的价格。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>提示：</p>
+<ol>
+<li>调用 StockSpanner.next(int price) 时，将有 1 &lt;= price &lt;= 10^5。</li>
+<li>每个测试用例最多可以调用  10000 次 StockSpanner.next。 </li>
+<li>在所有测试用例中，最多调用 150000 次。</li>
+<li>StockSpanner.next。 此问题的总时间限制减少了 50%。</li>
+</ol>
+<h3 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h3><p>题意关键：求价格小于或等于今天价格的最大连续日数（往前数）<br>这道题非常适合用单调栈来做，以题目 [100, 80, 60, 70, 60, 75, 85]为例，那么股票跨度将是 [1, 1, 1, 2, 1, 4, 6]。</p>
+<p>用两个栈一个用来存价格，一个用来存跨度；<br>维护一个单调递增的栈，大的加进来，小的弹出去；<br>分析过程：<br>首先栈为空，加入100，w初始为1</p>
+<p>下一个值，<code>80</code>，栈顶值不是小于等于它，于是加入，<code>w</code>初始为<code>1</code>入栈，同理<code>60</code>也是</p>
+<p>下一个值：<code>70</code>，此时<code>栈中[100,80,60]</code>,<code>大于</code>栈顶<code>60</code>，将栈顶元素<code>弹出</code>，并计算w，w=<code>初始1+w(60)</code>=1+1=2加入w栈，其中w（60）其实就是栈顶的w（因为是同步的）</p>
+<p>下一个值：<code>60</code>，与80的原理</p>
+<p>下一个值：<code>75</code>，此时<code>栈中[100,80,70,60]</code>，计算w，为<code>1+w(60)+w(70)</code>=1+1+2=<code>4</code>，加入跨度栈w</p>
+<p>下一个值：<code>85</code>，w=<code>1+w(75)+w(80)</code>=1+4+1=<code>6</code> 结束</p>
+<p><font color=#999AAA >代码如下（示例）：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">StockSpanner</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">prices</span>=[];<span class="comment">//存价格</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">weights</span>=[];<span class="comment">//存跨度</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">price</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="title class_">StockSpanner</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">next</span> = <span class="keyword">function</span>(<span class="params">price</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> w = <span class="number">1</span>;<span class="comment">//初始</span></span><br><span class="line">    <span class="comment">//当prices栈不为空 且 栈顶小于输入价格  -&gt; 维护单调栈（弹出小于价格的并累加W）</span></span><br><span class="line">    <span class="comment">//以[100, 80, 60, 70, 60, 75, 85]为例，单调栈如下：</span></span><br><span class="line">    <span class="comment">//100           w=1  </span></span><br><span class="line">    <span class="comment">//100,80        w=1   lala</span></span><br><span class="line">    <span class="comment">//100,80,60     w=1</span></span><br><span class="line">    <span class="comment">//100,80,70     w=2  1+1</span></span><br><span class="line">    <span class="comment">//100,80,70,60  w=1  </span></span><br><span class="line">    <span class="comment">//100,80,75     w=4  1+1+2</span></span><br><span class="line">    <span class="comment">//100,85        w=6  1+4+1</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="variable language_">this</span>.<span class="property">prices</span>.<span class="property">length</span>&gt;<span class="number">0</span> &amp;&amp; <span class="variable language_">this</span>.<span class="property">prices</span>[<span class="variable language_">this</span>.<span class="property">prices</span>.<span class="property">length</span>-<span class="number">1</span>] &lt;=price)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">prices</span>.<span class="title function_">pop</span>();</span><br><span class="line">        w+=<span class="variable language_">this</span>.<span class="property">weights</span>.<span class="title function_">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">prices</span>.<span class="title function_">push</span>(price);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">weights</span>.<span class="title function_">push</span>(w);</span><br><span class="line">    <span class="keyword">return</span> w;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your StockSpanner object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * var obj = new StockSpanner()</span></span><br><span class="line"><span class="comment"> * var param_1 = obj.next(price)</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="五、739-每日温度"><a href="#五、739-每日温度" class="headerlink" title="五、739. 每日温度"></a>五、739. 每日温度</h2><ul>
+<li><input disabled="" type="checkbox"> 题目链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/daily-temperatures/">739. 每日温度</a><h3 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h3>请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。</li>
+</ul>
+<p>例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h3><p>题目关键在于：求解要想观测到<code>更高</code>的气温，<code>至少需要等待</code>的天数。后续没有温度更高结果为0。</p>
+<p>以[73, 74, 75, 71, 69, 72, 76, 73]为例：</p>
+<p>第一天<code>73</code>：  栈为空将73的下标加入栈中;</p>
+<p>第二天<code>74</code>： 74大于栈顶元素值，73弹出，73的结果res[0]值为74的下标减去73的下标，res[0]=1-0=1;</p>
+<p>第三天<code>75</code>： 75大于栈顶元素74，74弹出，同理res[1]=2-1=1，栈空75加入；</p>
+<p>第四天<code>71</code>，第五天<code>69</code>：  小于栈顶加入栈，此时栈：<code>[2（75）,3（71）,4（69）]</code>栈存的下标;</p>
+<p>第六天<code>72</code>：  大于栈顶元素值，69先弹出，<code>69</code>的结果res[4]值为72的下标减去69的下标，<code>res[4]=5-4=1</code>;循环73还大于现栈顶元素71，71先弹出，<code>71</code>的结果res[3]值为72的下标减去71的下标，<code>res[3]=5-3=2</code>；小于栈顶75，将72加入栈中，此时栈<code>[2（75），5（72）]</code>;</p>
+<p>第七天<code>76</code>：同上述步骤72 res[5]=6-5=1, 75 res[2]=6-2=4  栈为[76];</p>
+<p>第八天<code>73</code>：小于栈顶加入栈中</p>
+<p><font color=#999AAA >代码如下（示例）：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">T</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number[]</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> dailyTemperatures = <span class="keyword">function</span> (<span class="params">T</span>) &#123;</span><br><span class="line">    <span class="comment">//[73, 74, 75, 71, 69, 72, 76, 73]</span></span><br><span class="line">    <span class="comment">//74(1)           73-&gt;1-0=1</span></span><br><span class="line">    <span class="comment">//75              74-&gt;2-1=1</span></span><br><span class="line">    <span class="comment">//75,72(71,69)    69-&gt;5-4=1  71-&gt;5-3=2</span></span><br><span class="line">    <span class="comment">//76              72-&gt;6-5=1  75-&gt;6-2=4</span></span><br><span class="line">    <span class="comment">//76,73</span></span><br><span class="line">    <span class="keyword">let</span> stack = [];</span><br><span class="line">    <span class="keyword">var</span> res = <span class="keyword">new</span> <span class="title class_">Array</span>(T.<span class="property">length</span>).<span class="title function_">fill</span>(<span class="number">0</span>); <span class="comment">//运用fill方法为数组填0</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; T.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (stack.<span class="property">length</span> &amp;&amp; T[i] &gt; T[stack[stack.<span class="property">length</span> - <span class="number">1</span>]]) &#123; <span class="comment">//循环条件当前值大于栈顶元素值（栈中存的是下标值）</span></span><br><span class="line">            number[stack[stack.<span class="property">length</span> - <span class="number">1</span>]] = i - stack.<span class="title function_">pop</span>(); <span class="comment">//弹出栈的元素的跨度等于当前值下标减去弹出（栈顶）下标  </span></span><br><span class="line">        &#125;</span><br><span class="line">        stack.<span class="title function_">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="六、907-子数组的最小值之和"><a href="#六、907-子数组的最小值之和" class="headerlink" title="六、907. 子数组的最小值之和"></a>六、907. 子数组的最小值之和</h2><ul>
+<li><input disabled="" type="checkbox"> 题目链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-subarray-minimums/">907. 子数组的最小值之和</a><h3 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h3></li>
+</ul>
+<p>给定一个整数数组 A，找到 min(B) 的总和，其中 B 的范围为 A 的每个（连续）子数组。</p>
+<p>由于答案可能很大，因此返回答案模 10^9 + 7。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[3,1,2,4]</span><br><span class="line">输出：17</span><br><span class="line">解释：</span><br><span class="line">子数组为 [3]，[1]，[2]，[4]，[3,1]，[1,2]，[2,4]，[3,1,2]，[1,2,4]，[3,1,2,4]。 </span><br><span class="line">最小值为 3，1，2，4，1，1，2，1，1，1，和为 17。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>提示：</p>
+<p>1 &lt;= A &lt;= 30000<br>1 &lt;= A[i] &lt;= 30000</p>
+<h3 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h3><p>关键在于：求子数组中最小值的和，就是求 以 A[i] 作为最小数能构成的数组有多少个。</p>
+<p>以<code>[3,1,2,4]</code>为例 ,以<code>1</code> 为最小数，能构成的数组数为 <code>(1+1)*(2+1)</code> ，左边3比它大，右边2、4比它大。</p>
+<p>用单调栈求出 arr[i] 对应的左（右）最近比 arr[i] 小的数的索引  leftStack（rightStack），arr[i] 为最小数能形成的数组的个数为：<code>leftStack[i]*rightStack[i]</code></p>
+<p>知道个数再乘以值累加，得到结果；</p>
+<p><font color=#999AAA >代码如下（示例）：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">arr</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> sumSubarrayMins = <span class="keyword">function</span> (<span class="params">arr</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">let</span> stack = [];</span><br><span class="line">    <span class="keyword">let</span> leftStack = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (stack.<span class="property">length</span> &amp;&amp; arr[stack[stack.<span class="property">length</span> - <span class="number">1</span>]] &gt;= arr[i]) &#123; <span class="comment">//左边设置大于等于了，右边就只能是大于了，不然会重复计算</span></span><br><span class="line">            stack.<span class="title function_">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果栈为空，即左边都比自己大，则返回i+1，否则返回i减栈顶元素（栈保存下标值）</span></span><br><span class="line">        leftStack[i] = stack.<span class="property">length</span> ? i - stack[stack.<span class="property">length</span> - <span class="number">1</span>] : i + <span class="number">1</span></span><br><span class="line">        stack.<span class="title function_">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    stack = [];</span><br><span class="line">    <span class="keyword">let</span> rightStack = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = arr.<span class="property">length</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">while</span> (stack.<span class="property">length</span> &amp;&amp; arr[stack[stack.<span class="property">length</span> - <span class="number">1</span>]] &gt; arr[i]) &#123;</span><br><span class="line">            stack.<span class="title function_">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果栈为空，即右边都比自己大，则返回arr.length-i，否则返回栈顶元素（即保存的下标值）-i</span></span><br><span class="line">        rightStack[i] = stack.<span class="property">length</span> ? stack[stack.<span class="property">length</span> - <span class="number">1</span>] - i : arr.<span class="property">length</span> - i</span><br><span class="line">        stack.<span class="title function_">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 以arr[i] 为最小值的子数组的组合共有leftStack[i]*rightStack[i]种情况，那么和的话乘以arr[i]累加即可</span></span><br><span class="line">        res += (leftStack[i] * rightStack[i] * arr[i]);</span><br><span class="line">        res %= mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="七、1190-反转每对括号间的子串"><a href="#七、1190-反转每对括号间的子串" class="headerlink" title="七、1190. 反转每对括号间的子串"></a>七、1190. 反转每对括号间的子串</h2><ul>
+<li><input disabled="" type="checkbox"> 题目链接：1190. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-substrings-between-each-pair-of-parentheses/">反转每对括号间的子串</a><h3 id="题目描述-6"><a href="#题目描述-6" class="headerlink" title="题目描述"></a>题目描述</h3>给出一个字符串 s（仅含有小写英文字母和括号）。</li>
+</ul>
+<p>请你按照从括号内到外的顺序，逐层反转每对匹配括号中的字符串，并返回最终的结果。</p>
+<p>注意，您的结果中 不应 包含任何括号。</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;(abcd)&quot;</span><br><span class="line">输出：&quot;dcba&quot;</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;(u(love)i)&quot;</span><br><span class="line">输出：&quot;iloveu&quot;</span><br></pre></td></tr></table></figure>
+
+<p>示例 3：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;(ed(et(oc))el)&quot;</span><br><span class="line">输出：&quot;leetcode&quot;</span><br></pre></td></tr></table></figure>
+
+<p>示例 4：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;a(bcdefghijkl(mno)p)q&quot;</span><br><span class="line">输出：&quot;apmnolkjihgfedcbq&quot;</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0 &lt;= s.length &lt;= 2000</span><br><span class="line">s 中只有小写英文字母和括号</span><br><span class="line">我们确保所有括号都是成对出现的</span><br></pre></td></tr></table></figure>
+
+<h3 id="解题思路-6"><a href="#解题思路-6" class="headerlink" title="解题思路"></a>解题思路</h3><p>题目关键：括号内到外，逐层反转每对匹配括号中的字符串，理解到底是怎么匹配的<br>提示中关键：括号都是成对的</p>
+<p>以示例 3：s = “(ed(et(oc))el)”为例，为了更清楚直观，我写一下下标：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">示例：</span><br><span class="line">(    e    d    (    e    t    (    o    c    )    )   e   l    )</span><br><span class="line"><span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span>    <span class="number">5</span>    <span class="number">6</span>    <span class="number">7</span>    <span class="number">8</span>    <span class="number">9</span>   <span class="number">10</span>   <span class="number">11</span>  <span class="number">12</span>  <span class="number">13</span></span><br><span class="line"></span><br><span class="line"><span class="attr">pair</span>:<span class="comment">//左右括号一一对应</span></span><br><span class="line"><span class="number">13</span>   <span class="number">10</span>   <span class="number">9</span>   </span><br><span class="line"><span class="number">0</span>    <span class="number">3</span>    <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<p>首先用一个for循环和栈，将左右配对的括号存起来</p>
+<p>第一个遇到的左括号<code>0</code>：0<code>-&gt;13</code>找到右括号，<code>逆序</code> i- -输出12 11（<code>l e</code>），<code>直到遇到下一个括号</code>10；</p>
+<p>第二个遇到的右括号<code>10</code>:10<code>-&gt;3</code>，<code>i++</code>输出 4 5（<code>et</code>），遇到6；</p>
+<p>第三个遇到括号<code>6</code>：6<code>-&gt;9</code>，<code>i- -</code>，8 7 （<code>c o</code>),遇到6；</p>
+<p>第四个遇到括号<code>6</code>：6-<code>&gt;9</code>，<code>i++</code>，遇到10；</p>
+<p>第五个遇到括号<code>10</code>：10<code>-&gt;3</code>，<code>i- -</code>，2 1 （<code>d e</code>),遇到0；</p>
+<p>第六个遇到括号<code>0</code>：0-<code>&gt;13</code>，<code>i++</code>，13&gt;len  <code>结束</code>；</p>
+<p>输出：”leetcode”</p>
+<p>i++和i–可以用一个参数储存方向，遇到括号就匹配反向；</p>
+<p><font color=#999AAA >代码如下（示例）：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">s</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">string</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 0-&gt;13    12 11  10  le</span></span><br><span class="line"><span class="comment"> * 10-&gt;3    4 5    6   et</span></span><br><span class="line"><span class="comment"> * 6-&gt;9     8 7    10  co</span></span><br><span class="line"><span class="comment"> * 10-&gt;3    2 1    0   de</span></span><br><span class="line"><span class="comment"> * 0-&gt;13    14     (end)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> reverseParentheses = <span class="keyword">function</span> (<span class="params">s</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> pair = [];</span><br><span class="line">    <span class="keyword">let</span> stack = [];</span><br><span class="line">    <span class="comment">//匹配括号</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] === <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">            stack.<span class="title function_">push</span>(i)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[i] === <span class="string">&#x27;)&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> j = stack.<span class="title function_">pop</span>();</span><br><span class="line">            pair[i] = j; <span class="comment">//相当于键值存储，a[0]=13,a[13]=0</span></span><br><span class="line">            pair[j] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> res = [],</span><br><span class="line">        r = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, direction = <span class="number">1</span>; i &lt; s.<span class="property">length</span>; i += direction) &#123;<span class="comment">//i=i+direction反转方向  i++或i--</span></span><br><span class="line">        <span class="keyword">if</span> (s[i] === <span class="string">&#x27;(&#x27;</span> || s[i] === <span class="string">&#x27;)&#x27;</span>) &#123;</span><br><span class="line">            i = pair[i]; <span class="comment">//找匹配的括号并修改i的下标为匹配括号下标 0-&gt;13  i=13</span></span><br><span class="line">            direction = -direction; <span class="comment">//反向</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res[r] = s[i];</span><br><span class="line">            r++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>); <span class="comment">//去逗号</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果上个方法没看懂？再说一个的方法吧</p>
+<h3 id="第二种解题思路"><a href="#第二种解题思路" class="headerlink" title="第二种解题思路"></a>第二种解题思路</h3><p>初始化栈，栈顶元素为 “ “ 遇到 ‘(‘: 向栈顶压入空字符串 遇到 ‘)’: 把栈顶的最后一个元素翻转 + 栈顶倒数第二个元素 遇到 字符: 直接将栈顶最后一个元素与它拼上</p>
+<p>参考<code>tuotuoli</code> 大佬解题思路</p>
+<p>样例栈数组操作示意：</p>
+<p>样例：a(bcdefghijkl(mno)p)q</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a [&#x27;a&#x27;]</span><br><span class="line">( [&#x27;a&#x27;, &#x27;&#x27;]</span><br><span class="line">b [&#x27;a&#x27;, &#x27;b&#x27;]</span><br><span class="line">c [&#x27;a&#x27;, &#x27;bc&#x27;]</span><br><span class="line">d [&#x27;a&#x27;, &#x27;bcd&#x27;]</span><br><span class="line">e [&#x27;a&#x27;, &#x27;bcde&#x27;]</span><br><span class="line">f [&#x27;a&#x27;, &#x27;bcdef&#x27;]</span><br><span class="line">g [&#x27;a&#x27;, &#x27;bcdefg&#x27;]</span><br><span class="line">h [&#x27;a&#x27;, &#x27;bcdefgh&#x27;]</span><br><span class="line">i [&#x27;a&#x27;, &#x27;bcdefghi&#x27;]</span><br><span class="line">j [&#x27;a&#x27;, &#x27;bcdefghij&#x27;]</span><br><span class="line">k [&#x27;a&#x27;, &#x27;bcdefghijk&#x27;]</span><br><span class="line">l [&#x27;a&#x27;, &#x27;bcdefghijkl&#x27;]</span><br><span class="line">( [&#x27;a&#x27;, &#x27;bcdefghijkl&#x27;, &#x27;&#x27;]</span><br><span class="line">m [&#x27;a&#x27;, &#x27;bcdefghijkl&#x27;, &#x27;m&#x27;]</span><br><span class="line">n [&#x27;a&#x27;, &#x27;bcdefghijkl&#x27;, &#x27;mn&#x27;]</span><br><span class="line">o [&#x27;a&#x27;, &#x27;bcdefghijkl&#x27;, &#x27;mno&#x27;]</span><br><span class="line">) [&#x27;a&#x27;, &#x27;bcdefghijklonm&#x27;]</span><br><span class="line">p [&#x27;a&#x27;, &#x27;bcdefghijklonmp&#x27;]</span><br><span class="line">) [&#x27;apmnolkjihgfedcb&#x27;]</span><br><span class="line">q [&#x27;apmnolkjihgfedcbq&#x27;]</span><br></pre></td></tr></table></figure>
+<p><font color=#999AAA >代码如下（示例）：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">s</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">string</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> reverseParentheses = <span class="keyword">function</span>(<span class="params">s</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> stack = [<span class="string">&#x27;&#x27;</span>]</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;s.<span class="property">length</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">let</span> ch = s[i]</span><br><span class="line">    <span class="keyword">if</span>(ch === <span class="string">&#x27;(&#x27;</span>)&#123;</span><br><span class="line">      stack.<span class="title function_">push</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ch === <span class="string">&#x27;)&#x27;</span>)&#123;</span><br><span class="line">      <span class="keyword">let</span> str = stack.<span class="title function_">pop</span>()</span><br><span class="line">      <span class="keyword">let</span> tmp = str.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      stack[stack.<span class="property">length</span>-<span class="number">1</span>] += tmp</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      stack[stack.<span class="property">length</span>-<span class="number">1</span>] += ch</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> stack.<span class="title function_">pop</span>()</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>最后一道简单题：</p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h1 id="八、1249-移除无效的括号"><a href="#八、1249-移除无效的括号" class="headerlink" title="八、1249.移除无效的括号"></a>八、1249.移除无效的括号</h1><ul>
+<li><input disabled="" type="checkbox"> 题目链接：1249.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-remove-to-make-valid-parentheses/">移除无效的括号</a></li>
+</ul>
+<h2 id="题目描述-7"><a href="#题目描述-7" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个由 ‘(‘、’)’ 和小写字母组成的字符串 s。</p>
+<p>你需要从字符串中删除最少数目的 ‘(‘ 或者 ‘)’ （可以删除任意位置的括号)，使得剩下的「括号字符串」有效。</p>
+<p>请返回任意一个合法字符串。</p>
+<p>有效「括号字符串」应当符合以下 任意一条 要求：</p>
+<p>空字符串或只包含小写字母的字符串<br>可以被写作 AB（A 连接 B）的字符串，其中 A 和 B 都是有效「括号字符串」<br>可以被写作 (A) 的字符串，其中 A 是一个有效的「括号字符串」</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;lee(t(c)o)de)&quot;</span><br><span class="line">输出：&quot;lee(t(c)o)de&quot;</span><br><span class="line">解释：&quot;lee(t(co)de)&quot; , &quot;lee(t(c)ode)&quot; 也是一个可行答案。</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;a)b(c)d&quot;</span><br><span class="line">输出：&quot;ab(c)d&quot;</span><br></pre></td></tr></table></figure>
+
+<p>示例 3：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;))((&quot;</span><br><span class="line">输出：&quot;&quot;</span><br><span class="line">解释：空字符串也是有效的</span><br></pre></td></tr></table></figure>
+
+<p>示例 4：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;(a(b(c)d)&quot;</span><br><span class="line">输出：&quot;a(b(c)d)&quot;</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 &lt;= s.length &lt;= 10^5</span><br><span class="line">s[i] 可能是 &#x27;(&#x27;、&#x27;)&#x27; 或英文小写字母</span><br></pre></td></tr></table></figure>
+<h1 id="解题思路-7"><a href="#解题思路-7" class="headerlink" title="解题思路"></a>解题思路</h1><p>解题关键：匹配到的括号保留，没匹配删除</p>
+<p><font color=#999AAA >代码如下（示例）：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">s</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">string</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> minRemoveToMakeValid = <span class="keyword">function</span> (<span class="params">s</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> res = [...s];</span><br><span class="line">    <span class="comment">//栈匹配括号，剩下括号删除</span></span><br><span class="line">    <span class="keyword">let</span> stack = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] === <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">            stack.<span class="title function_">push</span>(i);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[i] === <span class="string">&#x27;)&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (stack.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                stack.<span class="title function_">pop</span>();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="title function_">delete</span>(res[i]); <span class="comment">//栈为空，没有左括号，把当前右括号删除</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (stack.<span class="property">length</span>) &#123; <span class="comment">//删除栈顶元素直到栈空</span></span><br><span class="line">        <span class="title function_">delete</span>(res[stack.<span class="title function_">pop</span>()]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>每个人的解题方式都是不太一样的， 但是解题思路是可以相互借鉴的，希望这篇文章对你有用~</p>
+<p>后续文章会持续更新，下一篇：递归与回溯，和我一起刷题吧~</p>
+<blockquote>
+<p>点个赞再走吧 ~ 求求了 ❀❀❀   能一键三连的话那就更好啦~~，你的支持是我继续写作的动力⭐️</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">HearLing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://yangchaoyi.vip/posts/653/">https://yangchaoyi.vip/posts/653/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://yangchaoyi.vip" target="_blank">HearLingの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JS/">JS</a><a class="post-meta__tags" href="/tags/%E5%88%B7%E9%A2%98/">刷题</a></div><div class="post_share"><div class="social-share" data-image="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b495c56022f1428c9d5f829643b15d97~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/656/"><img class="prev-cover" data-lazy-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d892bdecee8e4beca1c614f4466a8efe~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">「JS刷题之路-递归回溯（上篇）」和我一起系统的刷题吧（内附思维导图）</div></div></a></div><div class="next-post pull-right"><a href="/posts/643/"><img class="next-cover" data-lazy-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/13305ad3e9b446529a5adac0cd1c63ef~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">「计算机网络」前端必备知识，看到就是赚到系列（上）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/656/" title="「JS刷题之路-递归回溯（上篇）」和我一起系统的刷题吧（内附思维导图）"><img class="cover" data-lazy-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d892bdecee8e4beca1c614f4466a8efe~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-20</div><div class="title">「JS刷题之路-递归回溯（上篇）」和我一起系统的刷题吧（内附思维导图）</div></div></a></div><div><a href="/posts/10205/" title="JS手撕，经典面试题"><img class="cover" data-lazy-src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c5f0fcdc24f648ea924a3e88686a4d44~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">JS手撕，经典面试题</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/img/202110311156644.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">HearLing</div><div class="author-info__description">不爱巧克力爱 Chocolate</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/201738571"><i class="iconfont icon-bilibili"></i><span>关注</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://juejin.cn/user/3922690515936312/posts" target="_blank" title=""><i class="iconfont icon-juejin"></i></a><a class="social-icon" href="https://github.com/HearLing" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/201738571" target="_blank" title=""><i class="iconfont icon-bilibili1"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>简介</span></div><div class="announcement_content">一枚前端程序媛，分享知识，我们一起进步吖～<br/> <a target="_blank" rel="noopener" href="https://space.bilibili.com/201738571"><img src="https://img.shields.io/badge/dynamic/json?labelColor=FE7398&logo=bilibili&logoColor=white&label=bilibili%20fans&color=00aeec&query=%24.data.totalSubs&url=https%3A%2F%2Fapi.spencerwoo.com%2Fsubstats%2F%3Fsource%3Dbilibili%26queryKey%3D201738571" /></a><br/>我的技术栈：<br/><img src="https://img.shields.io/badge/-React-282c34?logo=react"/>&nbsp<img src="https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white"/>&nbsp<img src="https://img.shields.io/badge/-JavaScript-yellow?logo=javascript&logoColor=white"/><br/>博客内容同步于 <a target="_blank" rel="noopener" href="https://space.bilibili.com/201738571">B 站：HearLing</a><br/> QQ交流群：666151691</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS%E5%88%B7%E9%A2%98%E4%B9%8B%E8%B7%AF-%E6%A0%88"><span class="toc-number">1.</span> <span class="toc-text">JS刷题之路-栈</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-number">2.</span> <span class="toc-text">思维导图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LeetCode-%E6%A0%88"><span class="toc-number">3.</span> <span class="toc-text">LeetCode-栈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%8120-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7"><span class="toc-number">3.1.</span> <span class="toc-text">一、20.有效的括号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-number">3.1.2.</span> <span class="toc-text">解题思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81946-%E9%AA%8C%E8%AF%81%E6%A0%88%E5%BA%8F%E5%88%97"><span class="toc-number">3.2.</span> <span class="toc-text">二、946. 验证栈序列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">解题思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81921-%E4%BD%BF%E6%8B%AC%E5%8F%B7%E6%9C%89%E6%95%88%E7%9A%84%E6%9C%80%E5%B0%91%E6%B7%BB%E5%8A%A0"><span class="toc-number">3.3.</span> <span class="toc-text">三、921.使括号有效的最少添加</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">解题思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%EF%BC%88%E5%9B%9B%E4%BA%94%E9%A2%98%E7%9A%84%EF%BC%89"><span class="toc-number">3.4.</span> <span class="toc-text">前置知识（四五题的）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-number">3.4.1.</span> <span class="toc-text">首先什么是单调栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-number">3.4.2.</span> <span class="toc-text">如何使用单调栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E9%A2%98%E9%80%82%E5%90%88%E7%94%A8%E5%8D%95%E8%B0%83%E6%A0%88%E6%9D%A5%E5%81%9A%E5%91%A2%EF%BC%9F"><span class="toc-number">3.4.3.</span> <span class="toc-text">什么题适合用单调栈来做呢？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81901-%E8%82%A1%E7%A5%A8%E4%BB%B7%E6%A0%BC%E8%B7%A8%E5%BA%A6"><span class="toc-number">3.5.</span> <span class="toc-text">四、901. 股票价格跨度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-3"><span class="toc-number">3.5.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-3"><span class="toc-number">3.5.2.</span> <span class="toc-text">解题思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81739-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6"><span class="toc-number">3.6.</span> <span class="toc-text">五、739. 每日温度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-4"><span class="toc-number">3.6.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-4"><span class="toc-number">3.6.2.</span> <span class="toc-text">解题思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81907-%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC%E4%B9%8B%E5%92%8C"><span class="toc-number">3.7.</span> <span class="toc-text">六、907. 子数组的最小值之和</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-5"><span class="toc-number">3.7.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-5"><span class="toc-number">3.7.2.</span> <span class="toc-text">解题思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%811190-%E5%8F%8D%E8%BD%AC%E6%AF%8F%E5%AF%B9%E6%8B%AC%E5%8F%B7%E9%97%B4%E7%9A%84%E5%AD%90%E4%B8%B2"><span class="toc-number">3.8.</span> <span class="toc-text">七、1190. 反转每对括号间的子串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-6"><span class="toc-number">3.8.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-6"><span class="toc-number">3.8.2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-number">3.8.3.</span> <span class="toc-text">第二种解题思路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%811249-%E7%A7%BB%E9%99%A4%E6%97%A0%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7"><span class="toc-number">4.</span> <span class="toc-text">八、1249.移除无效的括号</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-7"><span class="toc-number">4.1.</span> <span class="toc-text">题目描述</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-7"><span class="toc-number">5.</span> <span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.1.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/30403/" title="【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）"><img data-lazy-src="https://user-images.githubusercontent.com/51811652/227833231-3b91552a-618f-41de-bbc1-fc6f68177a7d.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）"/></a><div class="content"><a class="title" href="/posts/30403/" title="【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）">【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）</a><time datetime="2023-04-02T16:00:00.000Z" title="发表于 2023-04-03 00:00:00">2023-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/20505/" title="React 模拟面试题"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="React 模拟面试题"/></a><div class="content"><a class="title" href="/posts/20505/" title="React 模拟面试题">React 模拟面试题</a><time datetime="2022-05-04T16:00:00.000Z" title="发表于 2022-05-05 00:00:00">2022-05-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/20127/" title="「辩论」应不应该多使用 useCallback 和 useMemo"><img data-lazy-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d43e8725e22844b9992670da4b70555d~tplv-k3u1fbpfcp-watermark.image?" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「辩论」应不应该多使用 useCallback 和 useMemo"/></a><div class="content"><a class="title" href="/posts/20127/" title="「辩论」应不应该多使用 useCallback 和 useMemo">「辩论」应不应该多使用 useCallback 和 useMemo</a><time datetime="2022-01-26T16:00:00.000Z" title="发表于 2022-01-27 00:00:00">2022-01-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/11112/" title="React Redux写一个todoList"><img data-lazy-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/926f63809e6a4c39b6a3d64474ca6a79~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp?" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="React Redux写一个todoList"/></a><div class="content"><a class="title" href="/posts/11112/" title="React Redux写一个todoList">React Redux写一个todoList</a><time datetime="2021-11-11T16:00:00.000Z" title="发表于 2021-11-12 00:00:00">2021-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/11102/" title="「Redux Toolkit」 是个好东西 💗"><img data-lazy-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a810362049134e91ae0ddda33e4ef989~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp?" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「Redux Toolkit」 是个好东西 💗"/></a><div class="content"><a class="title" href="/posts/11102/" title="「Redux Toolkit」 是个好东西 💗">「Redux Toolkit」 是个好东西 💗</a><time datetime="2021-11-01T16:00:00.000Z" title="发表于 2021-11-02 00:00:00">2021-11-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2023  <i id="heartbeat" class="fa fas fa-heartbeat"></i> HearLing</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div><div class="icp"><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png"/><span>湘ICP备20002952号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);</script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@master/xkTool/v3.1.1/xkTool.js"></script><script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
