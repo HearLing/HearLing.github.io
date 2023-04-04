@@ -2,9 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://yangchaoyi.vip/posts/20505/</loc>
+    <loc>https://yangchaoyi.vip/posts/21007/</loc>
     
-    <lastmod>2023-04-03</lastmod>
+    <lastmod>2023-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yangchaoyi.vip/posts/20709/</loc>
+    
+    <lastmod>2023-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yangchaoyi.vip/posts/20406/</loc>
+    
+    <lastmod>2023-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yangchaoyi.vip/posts/20402/</loc>
+    
+    <lastmod>2023-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yangchaoyi.vip/posts/20327/</loc>
+    
+    <lastmod>2023-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yangchaoyi.vip/posts/11203/</loc>
+    
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -378,6 +423,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://yangchaoyi.vip/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2023-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -508,6 +560,13 @@
   
   <url>
     <loc>https://yangchaoyi.vip/categories/%E9%97%B2%E8%B0%88/%E5%85%B3%E4%BA%8E%E6%88%91/</loc>
+    <lastmod>2023-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yangchaoyi.vip/categories/JS/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

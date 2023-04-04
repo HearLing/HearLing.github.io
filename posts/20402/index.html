@@ -1,0 +1,376 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>「前端设计模式」- 发布订阅/观察者模式深入理解 | HearLingの博客</title><meta name="keywords" content="JS，设计模式"><meta name="author" content="HearLing"><meta name="copyright" content="HearLing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发布订阅&#x2F;观察者模式发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。 通俗的例子小玲最近迷上了看连载书，每天都在等更新，，，什么时候有书除了书店没有人能够知道。于是小玲隔三差五都会来书店看看出没出新版。除了小玲，还有张三、李四、王五也会来看更新了没。小玲不高兴，每天要跑来看有没有更新。书店不高兴，每天都有人问一样的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「前端设计模式」- 发布订阅&#x2F;观察者模式深入理解">
+<meta property="og:url" content="https://yangchaoyi.vip/posts/20402/index.html">
+<meta property="og:site_name" content="HearLingの博客">
+<meta property="og:description" content="发布订阅&#x2F;观察者模式发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。 通俗的例子小玲最近迷上了看连载书，每天都在等更新，，，什么时候有书除了书店没有人能够知道。于是小玲隔三差五都会来书店看看出没出新版。除了小玲，还有张三、李四、王五也会来看更新了没。小玲不高兴，每天要跑来看有没有更新。书店不高兴，每天都有人问一样的问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0205ca5a56b74c88bd0c59660ab12709~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?">
+<meta property="article:published_time" content="2022-04-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-04T04:21:04.763Z">
+<meta property="article:author" content="HearLing">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0205ca5a56b74c88bd0c59660ab12709~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://yangchaoyi.vip/posts/20402/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-04 12:21:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kang-static@latest/Hexo/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Rr210/Lantern@2.4/dl.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/img/202110311156644.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">HearLingの博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">「前端设计模式」- 发布订阅/观察者模式深入理解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-01T16:00:00.000Z" title="发表于 2022-04-02 00:00:00">2022-04-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-04T04:21:04.763Z" title="更新于 2023-04-04 12:21:04">2023-04-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JS/">JS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JS/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="发布订阅-观察者模式"><a href="#发布订阅-观察者模式" class="headerlink" title="发布订阅/观察者模式"></a>发布订阅/观察者模式</h1><p>发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。</p>
+<h2 id="通俗的例子"><a href="#通俗的例子" class="headerlink" title="通俗的例子"></a>通俗的例子</h2><p>小玲最近迷上了看连载书，每天都在等更新，，，什么时候有书除了书店没有人能够知道。于是小玲隔三差五都会来书店看看出没出新版。除了小玲，还有张三、李四、王五也会来看更新了没。小玲不高兴，每天要跑来看有没有更新。书店不高兴，每天都有人问一样的问题。</p>
+<p>当然现实中不会这么笨的处理：小玲离开之前，把电话号码留在了书店。书店答应他，新书一出就马上发信息通知，他们的电话号码都被记在花名册上，新书出的时候，书店会翻开花名册，依次发送一条短信来通知他们。</p>
+<p><strong>优点：</strong></p>
+<p>在这个例子中使用发布—订阅模式有着显而易见的优点：</p>
+<ul>
+<li>读者不用再天天向书店咨询，在合适的时间点，书店作为发布者会通知这些消息订阅者。</li>
+<li>读者和书店之间不再强耦合在一起，当有新的读者出现时，他只需把手机号码留在书店，书店不关心读者的任何情况，不管读者是男是女。而书店的任何变动也不会影响读者，只要书店记得发布新书了给他们发短信这件事情。</li>
+</ul>
+<p>由优点可以见得：</p>
+<ul>
+<li><p>第一优点</p>
+<ul>
+<li>发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。</li>
+<li>在异步编程中使用发布—订阅模式，我们就无需过多关注对象在异步运行期间的内部状态，而只需要订阅感兴趣的事件发生点。</li>
+</ul>
+</li>
+<li><p>第二个优点</p>
+<ul>
+<li>发布—订阅模式可以取代对象之间硬编码的通知机制，一个对象不用再显式地调用另外一个对象的某个接口。</li>
+<li>发布—订阅模式让两个对象松耦合地联系在一起，虽然不太清楚彼此的细节，但这不影响它们之间相互通信。</li>
+<li>当有新的订阅者出现时，发布者的代码不需要任何修改；同样发布者需要改变时，也不会影响到之前的订阅者。只要之前约定的事件名没有变化，就可以自由地改变它们。</li>
+</ul>
+</li>
+</ul>
+<h2 id="DOM-事件"><a href="#DOM-事件" class="headerlink" title="DOM 事件"></a>DOM 事件</h2><p>实际上，只要我们曾经在 <code>DOM</code> 节点上面绑定过事件函数，那我们就曾经使用过发布—订阅模式：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="number">2</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">click</span>(); <span class="comment">//模拟用户点击</span></span><br></pre></td></tr></table></figure>
+
+<p>在这里需要监控用户点击 <code>document.body</code> 的动作，但是我们没办法预知用户将在什么时候点击。所以我们订阅 <code>document.body</code> 上的 <code>click</code> 事件，当 <code>body</code> 节点被点击时， <code>body</code> 节点便会向订阅者发布这个消息。</p>
+<p>当然我们还可以随意增加或者删除订阅者，增加任何订阅者都不会影响发布者代码的编写：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="number">2</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="number">3</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="number">4</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">click</span>(); <span class="comment">//模拟用户点击</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h2><p>如何实现：</p>
+<ul>
+<li>首先要指定好谁充当发布者（比如书店）；</li>
+<li>然后给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者（书店的花名册）；</li>
+<li>最后发布消息的时候，发布者会遍历这个缓存列表，依次触发里面存放的订阅者回调函数（遍历花名册，挨个发短信）。</li>
+</ul>
+<p>另外，我们还可以往回调函数里填入一些参数，订阅者可以接收这些参数。这是很有必要的，比如书店可以在发给订阅者的短信里加上书的单价、页数、章节等信息，订阅者接收到这些信息之后可以进行各自的处理：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> salesOffice = &#123;&#125;; <span class="comment">//书店</span></span><br><span class="line">salesOffice.<span class="property">clientList</span> = []; <span class="comment">//缓存列表，存放订阅者的调用函数</span></span><br><span class="line"></span><br><span class="line">salesOffice.<span class="property">listen</span> = <span class="keyword">function</span> (<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="comment">//增加订阅者</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">clientList</span>.<span class="title function_">push</span>(fn); <span class="comment">//添加进缓存列表</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">salesOffice.<span class="property">trigger</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//发布消息</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, fn; (fn = <span class="variable language_">this</span>.<span class="property">clientList</span>[i++]); ) &#123;</span><br><span class="line">    fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); <span class="comment">//arguments 是发布消息时带上的参数</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>实现了一个最简单的发布—订阅模式：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HearLing订阅消息</span></span><br><span class="line">salesOffice.<span class="title function_">listen</span>(<span class="keyword">function</span> (<span class="params">book, price</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;HearLing&quot;</span>, book, price);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 小玲订阅消息</span></span><br><span class="line">salesOffice.<span class="title function_">listen</span>(<span class="keyword">function</span> (<span class="params">book, price</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;小玲&quot;</span>, book, price);</span><br><span class="line">&#125;);</span><br><span class="line">salesOffice.<span class="title function_">trigger</span>(<span class="string">&quot;深入浅出设计模式&quot;</span>, <span class="number">88</span>); <span class="comment">// 输出：HearLing 深入浅出设计模式 88  小玲 深入浅出设计模式 88</span></span><br><span class="line">salesOffice.<span class="title function_">trigger</span>(<span class="string">&quot;你不知道JavaScript&quot;</span>, <span class="number">98</span>); <span class="comment">// 输出：HearLing 你不知道JavaScript 98  小玲 你不知道JavaScript 99</span></span><br></pre></td></tr></table></figure>
+
+<p>还存在一些问题。我们看到订阅者接收到了发布者发布的每个消息， <code>HearLing</code> 只想买 “深入浅出设计模式” ，但是推给他不关心的 “你不知道 JavaScript” ，这对 <code>HearLing</code> 来说是不必要的困扰。</p>
+<p>所以我们有必要增加一个标示 <code>key</code> ，让订阅者只订阅自己感兴趣的消息。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> salesOffice = &#123;&#125;; <span class="comment">//书店</span></span><br><span class="line">salesOffice.<span class="property">clientList</span> = &#123;&#125;; <span class="comment">//缓存列表，存放订阅者的调用函数</span></span><br><span class="line"></span><br><span class="line">salesOffice.<span class="property">listen</span> = <span class="keyword">function</span> (<span class="params">key, fn</span>) &#123;</span><br><span class="line">  <span class="comment">//增加订阅者</span></span><br><span class="line">  <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">clientList</span>[key]) &#123;</span><br><span class="line">    <span class="comment">// 如果还没有订阅过此类消息，给改类消息创建一个缓存列表</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">clientList</span>[key] = [];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">clientList</span>[key].<span class="title function_">push</span>(fn); <span class="comment">//订阅的消息添加进缓存列表</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">salesOffice.<span class="property">trigger</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//发布消息</span></span><br><span class="line">  <span class="keyword">var</span> key = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">shift</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>), <span class="comment">// 取出消息类型</span></span><br><span class="line">    fns = <span class="variable language_">this</span>.<span class="property">clientList</span>[key]; <span class="comment">// 取出该消息对应的回调函数集合</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!fns || fns.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 如果没有订阅该消息，则返回</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, fn; (fn = fns[i++]); ) &#123;</span><br><span class="line">    fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); <span class="comment">//arguments 是发布消息时带上的参数</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// HearLing订阅消息</span></span><br><span class="line">salesOffice.<span class="title function_">listen</span>(<span class="string">&quot;深入浅出设计模式&quot;</span>, <span class="keyword">function</span> (<span class="params">price</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;HearLing&quot;</span>, price);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 小玲订阅消息</span></span><br><span class="line">salesOffice.<span class="title function_">listen</span>(<span class="string">&quot;你不知道JavaScript&quot;</span>, <span class="keyword">function</span> (<span class="params">price</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;小玲&quot;</span>, price);</span><br><span class="line">&#125;);</span><br><span class="line">salesOffice.<span class="title function_">trigger</span>(<span class="string">&quot;深入浅出设计模式&quot;</span>, <span class="number">88</span>); <span class="comment">// 输出：HearLing 88</span></span><br><span class="line">salesOffice.<span class="title function_">trigger</span>(<span class="string">&quot;你不知道JavaScript&quot;</span>, <span class="number">98</span>); <span class="comment">// 输出：小玲 98</span></span><br></pre></td></tr></table></figure>
+
+<p>很明显，现在订阅者可以只订阅自己感兴趣的事件了。</p>
+<h2 id="通用实现"><a href="#通用实现" class="headerlink" title="通用实现"></a>通用实现</h2><p>假设现在 <code>HearLing</code> 又去另一个书店买书，那么这段代码是否必须在另一个书店重写一次呢，有没有办法可以让所有书店都拥有一套发布—订阅功能呢？</p>
+<p>答案显然是有的，<code>JavaScript</code> 作为一门解释执行的语言，给对象动态添加职责是理所当然的事情。</p>
+<p>把发布—订阅的功能提取出来，放在一个单独的对象内：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> event = &#123;</span><br><span class="line">  <span class="attr">clientList</span>: [],</span><br><span class="line">  <span class="attr">listen</span>: <span class="keyword">function</span> (<span class="params">key, fn</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">clientList</span>[key]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">clientList</span>[key] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">clientList</span>[key].<span class="title function_">push</span>(fn); <span class="comment">// 订阅的消息添加缓存列表</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">trigger</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> key = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">shift</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>),</span><br><span class="line">      fns = <span class="variable language_">this</span>.<span class="property">clientList</span>[key]; <span class="comment">// 取出该消息对应的回调函数集合</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!fns || fns.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果没有订阅该消息，则返回</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, fn; (fn = fns[i++]); ) &#123;</span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); <span class="comment">//arguments 是发布消息时带上的参数</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>再定义一个 <code>installEvent</code> 函数，这个函数可以给所有对象都动态安装发布-订阅功能：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> installEvent = <span class="keyword">function</span> (<span class="params">obj</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> event) &#123;</span><br><span class="line">    obj[i] = event[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>书店对象 <code>salesOffices</code> 动态增加发布—订阅功能：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> salesOffice = &#123;&#125;; <span class="comment">//书店</span></span><br><span class="line"><span class="title function_">installEvent</span>(salesOffice);</span><br><span class="line"></span><br><span class="line">salesOffice.<span class="title function_">listen</span>(<span class="string">&quot;深入浅出设计模式&quot;</span>, <span class="keyword">function</span> (<span class="params">price</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;HearLing订阅深入浅出设计模式价格:&quot;</span>, price);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">salesOffice.<span class="title function_">listen</span>(<span class="string">&quot;你不知道JavaScript&quot;</span>, <span class="keyword">function</span> (<span class="params">price</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;小玲订阅你不知道JavaScript价格:&quot;</span>, price);</span><br><span class="line">&#125;);</span><br><span class="line">salesOffice.<span class="title function_">trigger</span>(<span class="string">&quot;深入浅出设计模式&quot;</span>, <span class="number">88</span>); <span class="comment">// HearLing订阅深入浅出设计模式价格: 88</span></span><br><span class="line">salesOffice.<span class="title function_">trigger</span>(<span class="string">&quot;你不知道JavaScript&quot;</span>, <span class="number">98</span>); <span class="comment">// 小玲订阅你不知道JavaScript价格: 98</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="取消订阅事件"><a href="#取消订阅事件" class="headerlink" title="取消订阅事件"></a>取消订阅事件</h2><p>有时候，我们也许需要取消订阅事件的功能。比如 <code>HearLing</code> 不想买书了，为了避免继续接收到书店推送过来的短信， <code>HearLing</code> 需要取消之前订阅的事件。现在我们给 <code>event</code> 对象增加 <code>remove</code> 方法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">event.<span class="property">remove</span> = <span class="keyword">function</span> (<span class="params">key, fn</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> fns = <span class="variable language_">this</span>.<span class="property">clientList</span>[key];</span><br><span class="line">  <span class="keyword">if</span> (!fns) &#123;</span><br><span class="line">    <span class="comment">// 如果key 对应的消息没有被人订阅，则直接返回</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!fn) &#123;</span><br><span class="line">    <span class="comment">// 如果没有传入具体的回调函数，表示需要取消可以对应消息的所有订阅</span></span><br><span class="line">    fns &amp;&amp; (fns.<span class="property">length</span> = <span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (i = fns.<span class="property">length</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">      <span class="keyword">var</span> _fn = fns[i];</span><br><span class="line">      <span class="keyword">if</span> (_fn === fn) &#123;</span><br><span class="line">        fns.<span class="title function_">splice</span>(i, <span class="number">1</span>); <span class="comment">// 删除订阅者的回调函数</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>并在订阅之后取消订阅：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">salesOffice.<span class="title function_">listen</span>(</span><br><span class="line">  <span class="string">&quot;深入浅出设计模式&quot;</span>,</span><br><span class="line">  (fn1 = <span class="keyword">function</span> (<span class="params">price</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;HearLing订阅深入浅出设计模式价格:&quot;</span>, price);</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">salesOffice.<span class="title function_">listen</span>(<span class="string">&quot;你不知道JavaScript&quot;</span>, <span class="keyword">function</span> (<span class="params">price</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;小玲订阅你不知道JavaScript价格:&quot;</span>, price);</span><br><span class="line">&#125;);</span><br><span class="line">salesOffice.<span class="title function_">remove</span>(<span class="string">&quot;深入浅出设计模式&quot;</span>, fn1);</span><br><span class="line">salesOffice.<span class="title function_">trigger</span>(<span class="string">&quot;深入浅出设计模式&quot;</span>, <span class="number">88</span>); <span class="comment">//</span></span><br><span class="line">salesOffice.<span class="title function_">trigger</span>(<span class="string">&quot;你不知道JavaScript&quot;</span>, <span class="number">98</span>); <span class="comment">// 小玲订阅你不知道JavaScript价格: 98</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="实现-EventEmitter"><a href="#实现-EventEmitter" class="headerlink" title="实现 EventEmitter"></a>实现 EventEmitter</h2><p>面试是具有更官方的写法的，相信你看了以上的内容已经可以将它写成一个类实现了。在这个类里我们要明确，需要具备的变量和函数：</p>
+<ol>
+<li>需要一个维护事件和监听者的对象</li>
+<li>使用 <code>on</code> 函数注册事件监听者</li>
+<li>使用 <code>emit</code> 函数发布事件</li>
+<li>使用 <code>off</code> 函数移除某个事件的一个监听者</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">EventEmitter</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 维护事件及监听者</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">listeners</span> = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 注册事件监听者</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">String</span>&#125; type 事件类型</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">Function</span>&#125; cb 回调函数</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">on</span>(<span class="params">type, cb</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">listeners</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">listeners</span>[type] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">listeners</span>[type].<span class="title function_">push</span>(cb);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 发布事件</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">String</span>&#125; type 事件类型</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span>  &#123;<span class="type">...any</span>&#125; args 参数列表，把emit传递的参数赋给回调函数</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">emit</span>(<span class="params">type, ...args</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">listeners</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">listeners</span>[type].<span class="title function_">forEach</span>(<span class="function">(<span class="params">cb</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">cb</span>(...args);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 移除某个事件的一个监听者</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">String</span>&#125; type 事件类型</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">Function</span>&#125; cb 回调函数</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">off</span>(<span class="params">type, cb</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">listeners</span>[type]) &#123;</span><br><span class="line">      <span class="keyword">const</span> targetIndex = <span class="variable language_">this</span>.<span class="property">listeners</span>[type].<span class="title function_">findIndex</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> item === cb);</span><br><span class="line">      <span class="keyword">if</span> (targetIndex !== -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">listeners</span>[type].<span class="title function_">splice</span>(targetIndex, <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">listeners</span>[type].<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">delete</span> <span class="variable language_">this</span>.<span class="property">listeners</span>[type];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建事件管理器实例</span></span><br><span class="line"><span class="keyword">const</span> ee = <span class="keyword">new</span> <span class="title class_">EventEmitter</span>();</span><br><span class="line"><span class="comment">// 注册事件监听者</span></span><br><span class="line">ee.<span class="title function_">on</span>(</span><br><span class="line">  <span class="string">&quot;设计模式&quot;</span>,</span><br><span class="line">  (fn1 = <span class="keyword">function</span> (<span class="params">price</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`HearLing订阅设计模式这本书的价格是:<span class="subst">$&#123;price&#125;</span>`</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br><span class="line">ee.<span class="title function_">on</span>(<span class="string">&quot;你不知道JavaScript&quot;</span>, <span class="keyword">function</span> (<span class="params">price</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`HearLing订阅你不知道JavaScript这本书的价格是:<span class="subst">$&#123;price&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line">ee.<span class="title function_">emit</span>(<span class="string">&quot;设计模式&quot;</span>, <span class="number">100</span>); <span class="comment">// 输出HearLing订阅设计模式这本书的价格是:100</span></span><br><span class="line"></span><br><span class="line">ee.<span class="title function_">off</span>(<span class="string">&quot;设计模式&quot;</span>, fn1);</span><br><span class="line">ee.<span class="title function_">emit</span>(<span class="string">&quot;设计模式&quot;</span>); <span class="comment">// 此时事件监听已经被移除，没有console.log</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="增强版"><a href="#增强版" class="headerlink" title="增强版"></a>增强版</h3><p>另增加函数，完善功能：</p>
+<ol>
+<li>使用 <code>once</code> 函数只执行一次</li>
+<li>使用 <code>offAll</code> 函数移除某个事件的所有监听者</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在上节代码新增</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 某个事件只监听一次</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">String</span>&#125; type 事件类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">Function</span>&#125; cb 回调函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="title function_">once</span>(<span class="params">type, cb</span>) &#123;</span><br><span class="line">   <span class="keyword">const</span> <span class="title function_">execFn</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">     cb.<span class="title function_">apply</span>(<span class="variable language_">this</span>);</span><br><span class="line">     <span class="variable language_">this</span>.<span class="title function_">off</span>(type, execFn);</span><br><span class="line">   &#125;;</span><br><span class="line">   <span class="variable language_">this</span>.<span class="title function_">on</span>(type, execFn);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 移除某个事件的所有监听者</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">String</span>&#125; type 事件类型</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="title function_">offAll</span>(<span class="params">type</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">listeners</span>[type]) &#123;</span><br><span class="line">        <span class="keyword">delete</span> <span class="variable language_">this</span>.<span class="property">listeners</span>[type]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><p>网上很多都喜欢将发布订阅模式、观察者模式还有 <code>EventMitter</code> 进行区分，我个人觉得没有什么必要，内核都是一样的，更多只是命名上的不同。</p>
+<h2 id="基本构成"><a href="#基本构成" class="headerlink" title="基本构成"></a>基本构成</h2><p>使用观察者模式，我们可以将某些对象（观察者）订阅到另一个对象，称为 <code>observable</code>。每当一个事件发生时， <code>observable</code> 就会通知它的所有观察者。</p>
+<p>一个可观察对象通常包含 3 个重要部分：</p>
+<ul>
+<li><code>observers</code> 观察者：当特定事件发生时将收到通知的观察者数组</li>
+<li><code>subscribe()</code> : 一种将观察者添加到观察者列表的方法</li>
+<li><code>unsubscribe()</code> ：从观察者列表中删除观察者的方法</li>
+<li><code>notify()</code> ：当特定事件发生时通知所有观察者的方法</li>
+</ul>
+<h2 id="简易版实现"><a href="#简易版实现" class="headerlink" title="简易版实现"></a>简易版实现</h2><p>让我们创建一个最简易的 <code>observable</code>。我们需要实现最核心的部分：</p>
+<ul>
+<li>1、使用 <code>subscribe</code> 方法将观察者添加到观察者列表中</li>
+<li>2、使用 <code>unsubscribe</code> 方法删除观察者</li>
+<li>3、使用 <code>notify</code> 方法通知所有订阅者。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Observable</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">observers</span> = [];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">subscribe</span>(<span class="params">func</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">observers</span>.<span class="title function_">push</span>(func);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">unsubscribe</span>(<span class="params">func</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">observers</span> = <span class="variable language_">this</span>.<span class="property">observers</span>.<span class="title function_">filter</span>(<span class="function">(<span class="params">observer</span>) =&gt;</span> observer !== func);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">notify</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">observers</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">observer</span>) =&gt;</span> <span class="title function_">observer</span>(data));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>明显的是上述只能完成，一有书到就发布消息，而没有分类型，而导致订阅者收到不是需要的消息，所以我们需要增加 <code>key</code> 来区分，思想可见自定义模式的增强版。</p>
+<p>这样一个观察者模式其实就能解决很多问题了，比如我们希望观测到事件触发就通知所有的订阅者，而不关心细节。当然我们也可以去增加 <code>key</code> ，来实现不同的通知，但是一般情况我们把这种写法看成观察者模式。</p>
+<p><strong>优点</strong></p>
+<ol>
+<li>分离关注点</li>
+<li>单一责任原则观察者对象与可观察对象没有紧密耦合，并且可以随时（解）耦合。可观察对象负责监控事件，而观察者只是处理接收到的数据。</li>
+</ol>
+<p><strong>缺点</strong></p>
+<p>如果观察者变得过于复杂，则在通知所有订阅者时可能会导致性能问题。</p>
+<h3 id="增强版-1"><a href="#增强版-1" class="headerlink" title="增强版"></a>增强版</h3><p>那如果我们实现，在这个电话簿上记下订阅的类型再分发消息，那么其实就是实现了我们在发布订阅模式的类实现版。</p>
+<p>为了实现增强，需做以下改造：</p>
+<ol>
+<li>需要增加 <code>key</code> 做区分，所以将 <code>observers</code> 改为对象</li>
+<li><code>subscribe</code> 函数不再是简单地 <code>push</code>，需要不同 <code>type</code> 数组放入回调</li>
+<li><code>unsubscribe</code> 和 <code>notify</code> 则都需要增加一层 <code>type</code> 判断</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Observable</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">observers</span> = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">subscribe</span>(<span class="params">type, func</span>) &#123;</span><br><span class="line">    <span class="comment">//增加type和判断</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">observers</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">observers</span>[type] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">observers</span>[type].<span class="title function_">push</span>(func);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">unsubscribe</span>(<span class="params">type, func</span>) &#123;</span><br><span class="line">    <span class="comment">//不是直接filter函数，而是根据类型删</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">observers</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">observers</span>[type] = <span class="variable language_">this</span>.<span class="property">observers</span>[type].<span class="title function_">filter</span>(<span class="function">(<span class="params">observer</span>) =&gt;</span> observer !== func);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">notify</span>(<span class="params">type, data</span>) &#123;</span><br><span class="line">    <span class="comment">//增加type判断</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">observers</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">observers</span>[type].<span class="title function_">forEach</span>(<span class="function">(<span class="params">fn</span>) =&gt;</span> <span class="title function_">fn</span>(data));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 和用发布订阅写的是一样的结果</span></span><br><span class="line"><span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="title class_">Observable</span>();</span><br><span class="line"></span><br><span class="line">observer.<span class="title function_">subscribe</span>(</span><br><span class="line">  <span class="string">&quot;设计模式&quot;</span>,</span><br><span class="line">  (fn1 = <span class="keyword">function</span> (<span class="params">price</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`HearLing订阅设计模式这本书的价格是:<span class="subst">$&#123;price&#125;</span>`</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br><span class="line">observer.<span class="title function_">subscribe</span>(<span class="string">&quot;你不知道JavaScript&quot;</span>, <span class="keyword">function</span> (<span class="params">price</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`HearLing订阅你不知道JavaScript这本书的价格是:<span class="subst">$&#123;price&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">observer.<span class="title function_">notify</span>(<span class="string">&quot;设计模式&quot;</span>, <span class="number">100</span>); <span class="comment">// 输出HearLing订阅设计模式这本书的价格是:100</span></span><br><span class="line"></span><br><span class="line">observer.<span class="title function_">unsubscribe</span>(<span class="string">&quot;设计模式&quot;</span>, fn1);</span><br><span class="line">observer.<span class="title function_">notify</span>(<span class="string">&quot;设计模式&quot;</span>); <span class="comment">// 此时事件监听已经被移除，没有console.log</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一句话总结发布订阅/观察者模式：当事件发生时，使用该模式通知订阅者。</p>
+<p>发布订阅模式和观察者模式其实没有区别，只是我们大多情况理解的观察者模式是一个数组而不是对象，也不区分类别，所以导致产生发布订阅模式和观察者模式不一样的想法。</p>
+<p>那我们可以简单地区分，一种是有类型判断而一种是没有类型判断的：</p>
+<ul>
+<li>有类型判断<ul>
+<li>优点：根据类型不同通知不同的订阅者，更加灵活准确</li>
+<li>缺点：当事件类型越来越多，会难以维护，需要考虑事件命名的规范，也要防范数据流混乱。</li>
+</ul>
+</li>
+<li>无类型判断<ul>
+<li>优点：适用于不做细分类型的场景，观测的事件触发就通知所有观察者，实现简单。</li>
+<li>缺点：无法做到精细化通知，不易拓展。</li>
+</ul>
+</li>
+</ul>
+<p>OK 那么关于发布订阅/观察者模式总结完毕，如果还有疑问，可以查阅 <code>《JavaScript设计模式与开发实践》</code> 这本书，也可以在评论留下见解。</p>
+<p>🌸 非常感谢你看到这，如果觉得不错的话点个赞 👍 或者 ⭐ 吧~~ 我们下期见 🌸</p>
+<p>今天也是在努力变强不变秃的  <code>HearLing</code>  呀 💪</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">HearLing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://yangchaoyi.vip/posts/20402/">https://yangchaoyi.vip/posts/20402/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://yangchaoyi.vip" target="_blank">HearLingの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JS/">JS</a><a class="post-meta__tags" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></div><div class="post_share"><div class="social-share" data-image="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0205ca5a56b74c88bd0c59660ab12709~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/20406/"><img class="prev-cover" data-lazy-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c9a6ba5a3e264941a4ab62a9b07c5983~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">彻底搞懂了异步场景面试题，多种题解</div></div></a></div><div class="next-post pull-right"><a href="/posts/20327/"><img class="next-cover" data-lazy-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e2491d797d84c2597fc56964c4b535b~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">「前端设计模式」- 单例模式深入理解</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/20709/" title="「前端设计模式」- 中介模式深入理解"><img class="cover" data-lazy-src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/52b5fd6d077540f99ddee20aaf66da04~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp?" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-09</div><div class="title">「前端设计模式」- 中介模式深入理解</div></div></a></div><div><a href="/posts/20327/" title="「前端设计模式」- 单例模式深入理解"><img class="cover" data-lazy-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e2491d797d84c2597fc56964c4b535b~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-27</div><div class="title">「前端设计模式」- 单例模式深入理解</div></div></a></div><div><a href="/posts/20406/" title="彻底搞懂了异步场景面试题，多种题解"><img class="cover" data-lazy-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c9a6ba5a3e264941a4ab62a9b07c5983~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-06</div><div class="title">彻底搞懂了异步场景面试题，多种题解</div></div></a></div><div><a href="/posts/10205/" title="JS手撕，经典面试题"><img class="cover" data-lazy-src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c5f0fcdc24f648ea924a3e88686a4d44~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">JS手撕，经典面试题</div></div></a></div><div><a href="/posts/656/" title="「JS刷题之路-递归回溯（上篇）」和我一起系统的刷题吧（内附思维导图）"><img class="cover" data-lazy-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d892bdecee8e4beca1c614f4466a8efe~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-20</div><div class="title">「JS刷题之路-递归回溯（上篇）」和我一起系统的刷题吧（内附思维导图）</div></div></a></div><div><a href="/posts/653/" title="「JS刷题之路-栈」和我一起系统的刷题吧（内附思维导图）"><img class="cover" data-lazy-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b495c56022f1428c9d5f829643b15d97~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-15</div><div class="title">「JS刷题之路-栈」和我一起系统的刷题吧（内附思维导图）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/img/202110311156644.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">HearLing</div><div class="author-info__description">不爱巧克力爱 Chocolate</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/201738571"><i class="iconfont icon-bilibili"></i><span>关注</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://juejin.cn/user/3922690515936312/posts" target="_blank" title=""><i class="iconfont icon-juejin"></i></a><a class="social-icon" href="https://github.com/HearLing" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/201738571" target="_blank" title=""><i class="iconfont icon-bilibili1"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>简介</span></div><div class="announcement_content">一枚前端程序媛，分享知识，我们一起进步吖～<br/> <a target="_blank" rel="noopener" href="https://space.bilibili.com/201738571"><img src="https://img.shields.io/badge/dynamic/json?labelColor=FE7398&logo=bilibili&logoColor=white&label=bilibili%20fans&color=00aeec&query=%24.data.totalSubs&url=https%3A%2F%2Fapi.spencerwoo.com%2Fsubstats%2F%3Fsource%3Dbilibili%26queryKey%3D201738571" /></a><br/>我的技术栈：<br/><img src="https://img.shields.io/badge/-React-282c34?logo=react"/>&nbsp<img src="https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white"/>&nbsp<img src="https://img.shields.io/badge/-JavaScript-yellow?logo=javascript&logoColor=white"/><br/>博客内容同步于 <a target="_blank" rel="noopener" href="https://space.bilibili.com/201738571">B 站：HearLing</a><br/> QQ交流群：666151691</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">发布订阅&#x2F;观察者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E4%BF%97%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">1.1.</span> <span class="toc-text">通俗的例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM-%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">DOM 事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">自定义事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.</span> <span class="toc-text">通用实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E8%AE%A2%E9%98%85%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">取消订阅事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-EventEmitter"><span class="toc-number">1.6.</span> <span class="toc-text">实现 EventEmitter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BA%E7%89%88"><span class="toc-number">1.6.1.</span> <span class="toc-text">增强版</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">观察者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90"><span class="toc-number">2.1.</span> <span class="toc-text">基本构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E6%98%93%E7%89%88%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.</span> <span class="toc-text">简易版实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BA%E7%89%88-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">增强版</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/30403/" title="【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）"><img data-lazy-src="https://user-images.githubusercontent.com/51811652/227833231-3b91552a-618f-41de-bbc1-fc6f68177a7d.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）"/></a><div class="content"><a class="title" href="/posts/30403/" title="【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）">【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）</a><time datetime="2023-04-02T16:00:00.000Z" title="发表于 2023-04-03 00:00:00">2023-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/21007/" title="React 模拟面试题"><img data-lazy-src="/images/react.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="React 模拟面试题"/></a><div class="content"><a class="title" href="/posts/21007/" title="React 模拟面试题">React 模拟面试题</a><time datetime="2022-10-06T16:00:00.000Z" title="发表于 2022-10-07 00:00:00">2022-10-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/20709/" title="「前端设计模式」- 中介模式深入理解"><img data-lazy-src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/52b5fd6d077540f99ddee20aaf66da04~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp?" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「前端设计模式」- 中介模式深入理解"/></a><div class="content"><a class="title" href="/posts/20709/" title="「前端设计模式」- 中介模式深入理解">「前端设计模式」- 中介模式深入理解</a><time datetime="2022-07-08T16:00:00.000Z" title="发表于 2022-07-09 00:00:00">2022-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/20406/" title="彻底搞懂了异步场景面试题，多种题解"><img data-lazy-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c9a6ba5a3e264941a4ab62a9b07c5983~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="彻底搞懂了异步场景面试题，多种题解"/></a><div class="content"><a class="title" href="/posts/20406/" title="彻底搞懂了异步场景面试题，多种题解">彻底搞懂了异步场景面试题，多种题解</a><time datetime="2022-04-05T16:00:00.000Z" title="发表于 2022-04-06 00:00:00">2022-04-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/20402/" title="「前端设计模式」- 发布订阅/观察者模式深入理解"><img data-lazy-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0205ca5a56b74c88bd0c59660ab12709~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「前端设计模式」- 发布订阅/观察者模式深入理解"/></a><div class="content"><a class="title" href="/posts/20402/" title="「前端设计模式」- 发布订阅/观察者模式深入理解">「前端设计模式」- 发布订阅/观察者模式深入理解</a><time datetime="2022-04-01T16:00:00.000Z" title="发表于 2022-04-02 00:00:00">2022-04-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2023  <i id="heartbeat" class="fa fas fa-heartbeat"></i> HearLing</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div><div class="icp"><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png"/><span>湘ICP备20002952号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);</script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@master/xkTool/v3.1.1/xkTool.js"></script><script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
