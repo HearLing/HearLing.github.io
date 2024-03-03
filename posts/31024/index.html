@@ -1,0 +1,359 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>低代码编辑器 demo | HearLingの博客</title><meta name="keywords" content="React，实战"><meta name="author" content="HearLing"><meta name="copyright" content="HearLing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言此低代码编辑器 demo，实现用意是让用户可以通过拖拉拽的形式，自行配置页面展示。 再做一下区分，由于业务性，不涉及到生成结构性代码生成，而是生成描述形式的 JSON，交由负责展示的项目或者模块翻译表达。 产品需求确认我列出来的这些都需要和产品确认，如果有的话，没有产品，我们在开发前也需要明确： 二级页面、滚动页拖拽、悬浮重叠组件、组件内交互、参数量级、校验。 明确我们要做的大致内容，以及面临">
+<meta property="og:type" content="article">
+<meta property="og:title" content="低代码编辑器 demo">
+<meta property="og:url" content="https://yangchaoyi.vip/posts/31024/index.html">
+<meta property="og:site_name" content="HearLingの博客">
+<meta property="og:description" content="前言此低代码编辑器 demo，实现用意是让用户可以通过拖拉拽的形式，自行配置页面展示。 再做一下区分，由于业务性，不涉及到生成结构性代码生成，而是生成描述形式的 JSON，交由负责展示的项目或者模块翻译表达。 产品需求确认我列出来的这些都需要和产品确认，如果有的话，没有产品，我们在开发前也需要明确： 二级页面、滚动页拖拽、悬浮重叠组件、组件内交互、参数量级、校验。 明确我们要做的大致内容，以及面临">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yangchaoyi.vip/lowcode.jpg">
+<meta property="article:published_time" content="2023-10-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-03T06:10:26.643Z">
+<meta property="article:author" content="HearLing">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="实战">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yangchaoyi.vip/lowcode.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://yangchaoyi.vip/posts/31024/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-03 14:10:26'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kang-static@latest/Hexo/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Rr210/Lantern@2.4/dl.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/img/202110311156644.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">HearLingの博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">低代码编辑器 demo</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-23T16:00:00.000Z" title="发表于 2023-10-24 00:00:00">2023-10-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-03T06:10:26.643Z" title="更新于 2024-03-03 14:10:26">2024-03-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/React/">React</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/React/%E5%AE%9E%E6%88%98/">实战</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>此低代码编辑器 demo，实现用意是让用户可以通过拖拉拽的形式，自行配置页面展示。</p>
+<p>再做一下区分，由于业务性，不涉及到生成结构性代码生成，而是生成描述形式的 JSON，交由负责展示的项目或者模块翻译表达。</p>
+<h2 id="产品需求确认"><a href="#产品需求确认" class="headerlink" title="产品需求确认"></a>产品需求确认</h2><p>我列出来的这些都需要和产品确认，如果有的话，没有产品，我们在开发前也需要明确：</p>
+<p>二级页面、滚动页拖拽、悬浮重叠组件、组件内交互、参数量级、校验。</p>
+<p>明确我们要做的大致内容，以及面临的挑战，这样在开发中才不会迷失方向。</p>
+<p>接下来就是调研工作，低代码产品，不是一个新东西，很多公司都做过，我们可以取取经。</p>
+<p>这里我一笔带过了~</p>
+<h2 id="技术路线-技术实现"><a href="#技术路线-技术实现" class="headerlink" title="技术路线/技术实现"></a>技术路线/技术实现</h2><p>实现一个 demo，效果为左侧拖拽组件，中间预览，右侧编辑 form。</p>
+<h3 id="左侧拖拽至右侧"><a href="#左侧拖拽至右侧" class="headerlink" title="左侧拖拽至右侧"></a>左侧拖拽至右侧</h3><p>左侧主要是组件的展示预览区域，一般会简要告诉用户该组件是做什么的，用户可以通过点击或拖拽添加至中间预览区编辑。其中涉及相对困难的点在于：</p>
+<p>左侧拖拽至右侧，实现方案：</p>
+<blockquote>
+<p>基于原生 drag 实现，没有找到合适的第三方支持</p>
+</blockquote>
+<ul>
+<li>由于左侧本身应该不支持拖拽排序，而只是允许拖拽至右侧，并且组件并不会消失,这与多拖拽组件设计之初相违背，使用原生则会简单可拓展一些。</li>
+</ul>
+<p>涉及难点：拖拽至中间时，存在多个组件，显示正确的预放置 drophere 站位符位置。</p>
+<p>解决思路：由于每个 dragitem 都会有一个唯一值，在拖拽进入 dragOverItem 时可以获取到对应的 id，从而显示占位符。</p>
+<h3 id="预览主体"><a href="#预览主体" class="headerlink" title="预览主体"></a>预览主体</h3><p>这里需要区分一下需要 y 轴排列拖拽滚动的长页面，和需要叠层任意拖拽的海报 h5 类的页面。</p>
+<p><strong>y 轴排列拖拽滚动的长页面：</strong></p>
+<p>主体拖拽实现，可以采用 @dnd-kit/core 或者 react-beautiful-dnd，我这里用的是 dnd-kit 对比 react-beautiful-dnd 暂时没有性能上的差距。</p>
+<p>遇到的一些小 bug 的记录：</p>
+<ul>
+<li>拖拽遮挡</li>
+</ul>
+<p>问题原因：是未设置拖拽时 zindex 更高</p>
+<ul>
+<li>非一致高度时，replace 高度继承 hoverItem 高度，导致拖动一个高度大的组件到高度小的组件位置时，空出的高度是小的，不容易看出来。</li>
+</ul>
+<p>问题原因：CSS.Transform.toString(transform)会在移动元素时应用缩放到 X 和 Y 轴的变换。相反，使用 transform: CSS.Translate.toString(transform)可以解决这个问题。这是因为 CSS.Translate.toString(transform)会应用平移变换，而不会应用缩放变换。这样可以确保在拖动元素时不会出现缩放问题。</p>
+<p><strong>叠层任意拖拽的 h5 类的页面</strong></p>
+<p>主体拖拽实现，使用的第三方库 react-rnd，支持 resize 和 drag 控制。</p>
+<p>主要功能实现在于其 onDragStop 时更新对应 id 的 x 与 y 值，onResizeStop 时更新 width 和 height。</p>
+<p>还需优化的点：</p>
+<p>前置功能需要完成多语言后台配置，而非后端配置。需要重新制定一套多语言方案。</p>
+<h3 id="右侧-form"><a href="#右侧-form" class="headerlink" title="右侧 form"></a>右侧 form</h3><p>可以对组件的样式, 逻辑, 交互进行配置，设计上主要在于数据存储和数据校验。</p>
+<p>在数据结构设计和数据流这一块，单独放在后续文章中详细讲解。使用的是 zustand 存储数据，由 store 统一处理数据。</p>
+<p>校验设计，简要概括：</p>
+<ol>
+<li>submit 提交时循环 value 触发对应的 validate 回调</li>
+<li>找到所有校验不通过的 form，记录 id 和 cKey（组件唯一键）</li>
+<li>切换到对应的组件 form</li>
+<li>触发 form 的 onInit 触发 validateFields 保证 form 正确标红</li>
+</ol>
+<p>待优化的点：</p>
+<p>实际编写时，比较麻烦的是需要写两套校验，1 是 form 中的 rules，2 是 from 对应的校验回调函数，考虑是否可以合二为一。</p>
+<p>产品设计上的优化，应保存奖品库或商品库，用时只需要添加并判断有无添加即可，而不需要判断其中的各种复杂的校验。</p>
+<h3 id="顶部功能区"><a href="#顶部功能区" class="headerlink" title="顶部功能区"></a>顶部功能区</h3><p>功能包括：放回，页面名称，保存，预览（手机预览，需要校验数据），调试用 json 看板。</p>
+<p>预览支持需要注意：需要验证数据，走保存逻辑，由后端生成的预览链接进行显示。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="公共组件库-OR-独立开发"><a href="#公共组件库-OR-独立开发" class="headerlink" title="公共组件库 OR 独立开发"></a>公共组件库 OR 独立开发</h3><p>公共组件库</p>
+<ul>
+<li>优势：<ul>
+<li>单一源头</li>
+<li>减少重复工作</li>
+<li>方便进行组件的更新和维护</li>
+</ul>
+</li>
+<li>劣势：<ul>
+<li>维护成本高</li>
+<li>开发成本高，需要考虑更多维情况</li>
+<li>相对增加更多的代码体积</li>
+<li>相对增加页面加载速度</li>
+</ul>
+</li>
+</ul>
+<p>独立开发，与公共组件库优劣相反</p>
+<p>从开发成本与以用户优先角度，最终还是选择*<em>独立开发 *</em>的方式。</p>
+<h3 id="性能考虑"><a href="#性能考虑" class="headerlink" title="性能考虑"></a>性能考虑</h3><ul>
+<li>Dashboard 编辑处理速度<ul>
+<li><strong>资源占用过高：</strong> 可视化开发平台通常提供了大量的可视化组件和功能，这些组件和功能可能会消耗大量的内存和计算资源。如果应用程序在内存高的情况下运行，可能会导致系统资源不足，从而影响平台的运行速度或导致假死。</li>
+<li><strong>复杂性和层次嵌套：</strong> 低代码平台通常支持复杂的应用程序开发，这可能导致应用程序的层次结构复杂，组件之间的嵌套层次深。当应用程序的层次嵌套非常深时，平台需要处理大量的组件和数据关系，这可能导致性能下降和假死现象。</li>
+<li><strong>数据量过大：</strong> 如果应用程序处理大量的数据，例如大型数据集或复杂的数据操作，这可能会占用大量的内存和计算资源。在内存高的情况下，系统可能无法有效地处理这些大量的数据，导致性能下降或假死。</li>
+</ul>
+</li>
+<li>可能的解决方案</li>
+<li><strong>优化资源使用：</strong> 确保应用程序和平台在设计和实现时充分优化资源的使用，避免资源的浪费和不必要的占用。</li>
+<li><strong>简化层次结构：</strong> 尽量简化应用程序的层次结构和组件嵌套，减少复杂性，提高性能。</li>
+<li><strong>处理大数据量：</strong> 对于大数据量的情况，采取适当的数据处理策略，如分页加载、服务器端数据处理等，以减轻客户端的资源压力。</li>
+<li>H5 渲染速度<ul>
+<li>图片资源压缩</li>
+<li>动态组件加载</li>
+</ul>
+</li>
+</ul>
+<h2 id="组件描述文件-json⭐"><a href="#组件描述文件-json⭐" class="headerlink" title="组件描述文件 json⭐"></a><strong>组件描述文件 json⭐</strong></h2><p>Item 数据类型：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">id</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">cKey</span>: <span class="title class_">CKey</span>;</span><br><span class="line">  <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">formValue</span>: <span class="title class_">FormValueType</span>&lt;<span class="title class_">CKey</span>&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">pageId</span>: <span class="built_in">string</span> <span class="comment">//增加：记录所在页面</span></span><br><span class="line">  <span class="attr">state</span>: &#123; width?: <span class="built_in">string</span>, height?: <span class="built_in">string</span>, <span class="attr">x</span>: <span class="built_in">string</span>, <span class="attr">y</span>: <span class="built_in">string</span> &#125; <span class="comment">//增加：记录长宽&amp;位置</span></span><br><span class="line">  <span class="attr">id</span>: <span class="built_in">string</span></span><br><span class="line">  <span class="attr">cKey</span>: <span class="title class_">CKey</span></span><br><span class="line">  <span class="attr">title</span>: <span class="built_in">string</span></span><br><span class="line">  <span class="attr">formValue</span>: <span class="title class_">FormValueType</span>&lt;<span class="title class_">CKey</span>&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>store：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">State</span> = &#123;</span><br><span class="line">  <span class="attr">items</span>: <span class="title class_">Item</span>[]</span><br><span class="line">  <span class="attr">activeItem</span>: <span class="title class_">Item</span> | <span class="literal">undefined</span></span><br><span class="line">  <span class="attr">errorIds</span>: &#123; <span class="attr">id</span>: <span class="built_in">string</span>; <span class="attr">cKey</span>: <span class="title class_">CKey</span> &#125;[]</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Actions</span> = &#123;</span><br><span class="line">  <span class="attr">setActiveItem</span>: <span class="function">(<span class="params">item: Item | <span class="literal">undefined</span></span>) =&gt;</span> <span class="built_in">void</span></span><br><span class="line">  <span class="attr">changeFormValues</span>: <span class="function">(<span class="params">value: <span class="built_in">any</span></span>) =&gt;</span> <span class="built_in">void</span></span><br><span class="line">  <span class="attr">setErrorIds</span>: <span class="function">(<span class="params">item: &#123; id: <span class="built_in">string</span>; cKey: CKey &#125;</span>) =&gt;</span> <span class="built_in">void</span></span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// from 初始数据和对应类型</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="attr">defaultFormValue</span>: &#123; [K <span class="keyword">in</span> <span class="title class_">CKey</span>]: <span class="title class_">FormValueMap</span>[K] &#125; = &#123;...&#125;</span><br><span class="line"><span class="comment">// 左侧图文列表</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="attr">cItems</span>: &#123; <span class="attr">icon</span>: <span class="title class_">ReactNode</span>; <span class="attr">cKey</span>: <span class="title class_">CKey</span>; <span class="attr">title</span>: <span class="built_in">string</span> &#125;[] = [...]</span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="梳理字段"><a href="#梳理字段" class="headerlink" title="梳理字段"></a>梳理字段</h3><p>header 头：</p>
+<ul>
+<li>pageId：唯一</li>
+<li>pageName：用于标识编辑页面</li>
+</ul>
+<p>左侧组件列需要数据：</p>
+<ul>
+<li>iconName： 用于图标显示，无需存元素</li>
+<li>title：描述组件标题</li>
+<li>cKey：唯一，通过 key 确定指向其对应组件</li>
+</ul>
+<p>主体预览部分数据： key-value：cKey-component</p>
+<ul>
+<li>id：唯一，后端 id 或使用 uuid 生成的 id 值，唯一确定组件，一定要有不然排序和性能会有问题。</li>
+<li>cKey：组件对应 key 值，可能不唯一，添加相同组件。</li>
+<li>formValue：表单数据（实时改变）</li>
+<li>className：样式数据（实时改变）</li>
+</ul>
+<p>配置区数据： key-value：cKey-from</p>
+<ul>
+<li>title（可能需要）</li>
+<li>initFormValue：表单初始数据</li>
+<li>initClassName：初始样式数据</li>
+</ul>
+<h3 id="类型定义"><a href="#类型定义" class="headerlink" title="类型定义"></a>类型定义</h3><p>要求能规范到 key 和对应的 formValue，实例参考：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type CKey = &quot;CKEY1&quot; | &quot;CKEY2&quot; | &quot;CKEY3&quot;</span><br><span class="line"></span><br><span class="line">  type FormValueMap = &#123;</span><br><span class="line">    CKEY1: &#123; title: string &#125;</span><br><span class="line">    CKEY2: number</span><br><span class="line">    CKEY3: boolean</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  type FormData&lt;K extends CKey&gt; = &#123;</span><br><span class="line">    id: string</span><br><span class="line">    cKey: K</span><br><span class="line">    formValue: FormValueMap[K]</span><br><span class="line">    className: string</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const formData: FormData&lt;&quot;CKEY1&quot;&gt; = &#123;</span><br><span class="line">    id: &quot;1&quot;,</span><br><span class="line">    cKey: &quot;CKEY1&quot;,</span><br><span class="line">    formValue: &#123; title: &quot;Hello World&quot; &#125;,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">HearLing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://yangchaoyi.vip/posts/31024/">https://yangchaoyi.vip/posts/31024/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://yangchaoyi.vip" target="_blank">HearLingの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/React/">React</a><a class="post-meta__tags" href="/tags/%E5%AE%9E%E6%88%98/">实战</a></div><div class="post_share"><div class="social-share" data-image="/./lowcode.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/30410/"><img class="next-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/project-react-excel.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">从零到一搭建一个React企业级项目</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/30410/" title="从零到一搭建一个React企业级项目"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/project-react-excel.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-10</div><div class="title">从零到一搭建一个React企业级项目</div></div></a></div><div><a href="/posts/11112/" title="React Redux写一个todoList"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/redux-todo.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-12</div><div class="title">React Redux写一个todoList</div></div></a></div><div><a href="/posts/10710/" title="「项目 📝 」React实现导入导出Excel文件"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/project-react-excel.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-10</div><div class="title">「项目 📝 」React实现导入导出Excel文件</div></div></a></div><div><a href="/posts/10408/" title="「Redux」概念理解+实战上手（内含大量实例）"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/react-redux-road.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-08</div><div class="title">「Redux」概念理解+实战上手（内含大量实例）</div></div></a></div><div><a href="/posts/21007/" title="React 模拟面试题"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/react.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-07</div><div class="title">React 模拟面试题</div></div></a></div><div><a href="/posts/20127/" title="「辩论」应不应该多使用 useCallback 和 useMemo"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/react-hook-use.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-27</div><div class="title">「辩论」应不应该多使用 useCallback 和 useMemo</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/img/202110311156644.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">HearLing</div><div class="author-info__description">不爱巧克力爱 Chocolate</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/201738571"><i class="iconfont icon-bilibili"></i><span>关注</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://juejin.cn/user/3922690515936312/posts" target="_blank" title=""><i class="iconfont icon-juejin"></i></a><a class="social-icon" href="https://github.com/HearLing" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/201738571" target="_blank" title=""><i class="iconfont icon-bilibili1"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>简介</span></div><div class="announcement_content">一枚前端程序媛，分享知识，我们一起进步吖～<br/> <a target="_blank" rel="noopener" href="https://space.bilibili.com/201738571"><img src="https://img.shields.io/badge/dynamic/json?labelColor=FE7398&logo=bilibili&logoColor=white&label=bilibili%20fans&color=00aeec&query=%24.data.totalSubs&url=https%3A%2F%2Fapi.spencerwoo.com%2Fsubstats%2F%3Fsource%3Dbilibili%26queryKey%3D201738571" /></a><br/>我的技术栈：<br/><img src="https://img.shields.io/badge/-React-282c34?logo=react"/>&nbsp<img src="https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white"/>&nbsp<img src="https://img.shields.io/badge/-JavaScript-yellow?logo=javascript&logoColor=white"/><br/>博客内容同步于 <a target="_blank" rel="noopener" href="https://space.bilibili.com/201738571">B 站：HearLing</a><br/> QQ交流群：666151691</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E9%9C%80%E6%B1%82%E7%A1%AE%E8%AE%A4"><span class="toc-number">2.</span> <span class="toc-text">产品需求确认</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF-%E6%8A%80%E6%9C%AF%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">技术路线&#x2F;技术实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E4%BE%A7%E6%8B%96%E6%8B%BD%E8%87%B3%E5%8F%B3%E4%BE%A7"><span class="toc-number">3.1.</span> <span class="toc-text">左侧拖拽至右侧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88%E4%B8%BB%E4%BD%93"><span class="toc-number">3.2.</span> <span class="toc-text">预览主体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%B3%E4%BE%A7-form"><span class="toc-number">3.3.</span> <span class="toc-text">右侧 form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B6%E9%83%A8%E5%8A%9F%E8%83%BD%E5%8C%BA"><span class="toc-number">3.4.</span> <span class="toc-text">顶部功能区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">4.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93-OR-%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91"><span class="toc-number">4.1.</span> <span class="toc-text">公共组件库 OR 独立开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%80%83%E8%99%91"><span class="toc-number">4.2.</span> <span class="toc-text">性能考虑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E6%8F%8F%E8%BF%B0%E6%96%87%E4%BB%B6-json%E2%AD%90"><span class="toc-number">5.</span> <span class="toc-text">组件描述文件 json⭐</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%B3%E7%90%86%E5%AD%97%E6%AE%B5"><span class="toc-number">5.1.</span> <span class="toc-text">梳理字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">5.2.</span> <span class="toc-text">类型定义</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/31024/" title="低代码编辑器 demo"><img data-lazy-src="/./lowcode.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="低代码编辑器 demo"/></a><div class="content"><a class="title" href="/posts/31024/" title="低代码编辑器 demo">低代码编辑器 demo</a><time datetime="2023-10-23T16:00:00.000Z" title="发表于 2023-10-24 00:00:00">2023-10-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/30410/" title="从零到一搭建一个React企业级项目"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/project-react-excel.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从零到一搭建一个React企业级项目"/></a><div class="content"><a class="title" href="/posts/30410/" title="从零到一搭建一个React企业级项目">从零到一搭建一个React企业级项目</a><time datetime="2023-04-09T16:00:00.000Z" title="发表于 2023-04-10 00:00:00">2023-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/30403/" title="【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/vue3-project.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）"/></a><div class="content"><a class="title" href="/posts/30403/" title="【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）">【Vue3 开源项目】后台管理系统（Vue3 + TypeScript + Pinia）</a><time datetime="2023-03-04T16:00:00.000Z" title="发表于 2023-03-05 00:00:00">2023-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/21007/" title="React 模拟面试题"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/react.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="React 模拟面试题"/></a><div class="content"><a class="title" href="/posts/21007/" title="React 模拟面试题">React 模拟面试题</a><time datetime="2022-10-06T16:00:00.000Z" title="发表于 2022-10-07 00:00:00">2022-10-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/20709/" title="「前端设计模式」- 中介模式深入理解"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn@master/blog/hl/the-mediation-pattern.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「前端设计模式」- 中介模式深入理解"/></a><div class="content"><a class="title" href="/posts/20709/" title="「前端设计模式」- 中介模式深入理解">「前端设计模式」- 中介模式深入理解</a><time datetime="2022-07-08T16:00:00.000Z" title="发表于 2022-07-09 00:00:00">2022-07-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024  <i id="heartbeat" class="fa fas fa-heartbeat"></i> HearLing</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div><div class="icp"><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png"/><span>湘ICP备20002952号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);</script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@master/xkTool/v3.1.1/xkTool.js"></script><script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
